@@ -1,0 +1,46 @@
+---
+- # ====== Static Application File: product_images.zip =========
+  id: 832836888947353566
+  identification: 
+    file-name: product_images.zip
+
+  attributes: 
+    mime-type: application/zip
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: image_not_found.png ========
+  id: 2485826444360941242
+  identification: 
+    file-name: image_not_found.png
+
+  attributes: 
+    mime-type: image/png
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: icons/app-icon-32.png ======
+  id: 3292387685394710930
+  identification: 
+    file-name: icons/app-icon-32.png
+
+  attributes: 
+    mime-type: image/png
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: icons/app-icon-192.png =====
+  id: 3292388041705710930
+  identification: 
+    file-name: icons/app-icon-192.png
+
+  attributes: 
+    mime-type: image/png
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: icons/app-icon-512.png =====
+  id: 3292388355079710931
+  identification: 
+    file-name: icons/app-icon-512.png
+
+  attributes: 
+    mime-type: image/png
+    file-character-set: Unicode UTF-8
+

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog 
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
+	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+	<changeSet id="f74881c61b3837101459814dc72451e46e086d25" author="(DEMO)-Generated" failOnError="false"   runOnChange="true" runAlways="false"  >
+		<n0:createSxmlObject objectName="EBA_DEMO_SEARCH_PRD_ORDERS" objectType="VIEW" ownerName="DEMO"  replaceIfExists="true" >
+			<n0:source><![CDATA[
+  <VIEW xmlns="http://xmlns.oracle.com/ku" version="1.0">
+   <SCHEMA>DEMO</SCHEMA>
+   <NAME>EBA_DEMO_SEARCH_PRD_ORDERS</NAME>
+   <DEFAULT_COLLATION>USING_NLS_COMP</DEFAULT_COLLATION>
+   <COL_LIST>
+      <COL_LIST_ITEM>
+         <NAME>PRODUCT_NAME</NAME>
+      </COL_LIST_ITEM>
+      <COL_LIST_ITEM>
+         <NAME>ORDER_STATUS</NAME>
+      </COL_LIST_ITEM>
+      <COL_LIST_ITEM>
+         <NAME>TOTAL_SALES</NAME>
+      </COL_LIST_ITEM>
+      <COL_LIST_ITEM>
+         <NAME>ORDER_COUNT</NAME>
+      </COL_LIST_ITEM>
+   </COL_LIST>
+   <SUBQUERY>select p.product_name,
+       o.order_status,
+       sum ( oi.quantity * oi.unit_price ) total_sales,
+       count (*) order_count 
+from eba_demo_search_orders o  
+join eba_demo_search_order_items oi 
+  on o.order_id = oi.order_id  
+join eba_demo_search_customers c
+  on o.customer_id = c.customer_id  
+join eba_demo_search_products p
+  on oi.product_id = p.product_id
+group by p.product_name  
+,        o.order_status
+</SUBQUERY>
+</VIEW>]]></n0:source>
+		</n0:createSxmlObject>
+	</changeSet>
+</databaseChangeLog>

@@ -1,0 +1,431 @@
+---
+# ====== Page: Link Search Result to Form ====================
+id: 202
+identification: 
+  name: Link Search Result to Form
+  alias: LINK-SEARCH-RESULT-TO-FORM
+  title: Link Search Result to Form
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Search ======================================
+  id: 844609190410380561
+  identification: 
+    title: Search
+    type: Static Content
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard # 3292288565517710863
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--hideHeader
+    - t-Region--noUI
+    - js-headingLevel-2
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Search
+    landmark-label: Customers
+
+  advanced: 
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: Breadcrumb ==================================
+  id: 3292495161871441703
+  identification: 
+    title: Breadcrumb
+    type: Breadcrumb
+
+  source: 
+    breadcrumb: Breadcrumb # 3292185949438710792
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    position: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Title Bar # 3292301028656710870
+    template-options: 
+    - '#DEFAULT#'
+    - t-BreadcrumbRegion--useBreadcrumbTitle
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    appearance: 
+      breadcrumb-template: Breadcrumb # 3292363060641710911
+      template-options: 
+      - '#DEFAULT#'
+
+- # ====== Region: Search Results ==============================
+  id: 3292495742049441704
+  identification: 
+    title: Search Results
+    type: Search
+
+  layout: 
+    sequence: 30
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: false
+    column-span: Automatic
+
+  appearance: 
+    template: Search Results Container # 3292285873630710861
+    template-options: 
+    - t-ResultsRegion--iconMd
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: false
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      search-page-item: P202_SEARCH
+      search-as-you-type: true
+      minimum-characters: No minimum (0)
+      lazy-loading: true
+      use-pagination: true
+      results-per-page: 15
+      show-result-count: No
+      custom-layout: false
+      no-query-entered-message: Enter a query to search for customers.
+      no-results-found-message: No customers found.
+
+  search-sources: 
+  - # ====== Search Source: Customer Search Configuration With Lin
+    id: 2480361184795286168
+    identification: 
+      name: Customer Search Configuration With Link
+      search-configuration: Customer Search Configuration # 3292447697491303239
+      use-as-initial-result: false
+
+    layout: 
+      sequence: 10
+
+- # ====== Region: Overview ====================================
+  id: 4968161060337197925
+  identification: 
+    title: Overview
+    type: Static Content
+
+  source: 
+    html-code: |
+      <p>This page explains how to link a form to a search result row.This will allow users to click on a row in a search result and be redirected to a form page to edit the row's details.</p>
+      <p>To set this up, go to the <strong>Shared Components</strong> section in <strong>Page Designer,</strong> select the relevant Search Configuration, and click "<strong>Edit Component</strong>" From there, select the form page to redirect to and specify the items to be passed using the attribute "<strong>Set these items</strong>" and set their values using the attribute "<strong>With these values</strong>".</p>
+      <p>To test the functionality, search for the name "<strong>Gary</strong>" and click on the row for Gary Barton to edit his details.</p>
+
+  layout: 
+    sequence: 40
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: 4
+
+  appearance: 
+    template: Standard # 3292288565517710863
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+page-items: 
+- # ====== Page Item: P202_SEARCH ==============================
+  id: 2480360421112286168
+  identification: 
+    name: P202_SEARCH
+    type: Text Field
+
+  label: 
+    label: Search
+    alignment: Left
+
+  settings: 
+    subtype: Search
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 10
+    region: Search # 844609190410380561
+    position: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: 0
+
+  appearance: 
+    template: Hidden # 3292358722170710908
+    template-options: 
+    - '#DEFAULT#'
+    - t-Form-fieldContainer--stretchInputs
+    - t-Form-fieldContainer--large
+    icon: fa-search
+    value-placeholder: Enter your search term, e.g. 'Gary'
+
+  validation: 
+    value-required: false
+
+  advanced: 
+    warn-on-unsaved-changes: Ignore
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+buttons: 
+- # ====== Button: PREV ========================================
+  id: 834334779103678741
+  identification: 
+    button-name: PREV
+    label: Previous
+
+  layout: 
+    sequence: 10
+    region: Breadcrumb # 3292495161871441703
+    position: NEXT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Icon # 3292360794092710909
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    icon: fa-angle-left
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:201:&SESSION.::&DEBUG.:::'
+      page: 201 # Search Query Prefix
+
+    warn-on-unsaved-changes: Do Not Check
+
+- # ====== Button: NEXT ========================================
+  id: 834335035783680337
+  identification: 
+    button-name: NEXT
+    label: Next
+
+  layout: 
+    sequence: 20
+    region: Breadcrumb # 3292495161871441703
+    position: NEXT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Icon # 3292360794092710909
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    icon: fa-angle-right
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:204:&SESSION.::&DEBUG.:::'
+      page: 204 # Custom Result Row Template
+
+    warn-on-unsaved-changes: Do Not Check
+
+dynamic-actions: 
+- # ====== Dynamic Action: Enter key ===========================
+  id: 840850352363139180
+  identification: 
+    name: Enter key
+
+  execution: 
+    sequence: 20
+
+  when: 
+    event: EVENT.EVENT.BROWSER.KEYPRESS
+    selection-type: Item(s)
+    item(s): 
+    - P202_SEARCH
+
+  client-side-condition: 
+    type: JavaScript expression
+    javascript-expression: |
+      this.browserEvent.keyCode === 13
+      
+
+  execution: 
+    event-scope: Static
+    type: Immediate
+
+  actions: 
+  - # ====== Action: Cancel Event ================================
+    id: 840850790931139180
+    identification: 
+      action: Cancel Event
+
+    execution: 
+      sequence: 10
+      event: Enter key # 840850352363139180
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+- # ====== Dynamic Action: Dialog Closed =======================
+  id: 2477840453541316175
+  identification: 
+    name: Dialog Closed
+
+  execution: 
+    sequence: 10
+
+  when: 
+    event: EVENT.EVENT.FAMEWORK.APEXAFTERCLOSEDIALOG
+    selection-type: Region
+    region: Search Results # 3292495742049441704
+
+  execution: 
+    event-scope: Static
+    type: Immediate
+
+  actions: 
+  - # ====== Action: Refresh =====================================
+    id: 2477840521788316176
+    identification: 
+      action: Refresh
+
+    affected-elements: 
+      selection-type: Region
+      region: Search Results # 3292495742049441704
+
+    execution: 
+      sequence: 10
+      event: Dialog Closed # 2477840453541316175
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+

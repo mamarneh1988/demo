@@ -1,0 +1,592 @@
+---
+# ====== Page: Multiple Search Regions =======================
+id: 207
+identification: 
+  name: Multiple Search Regions
+  alias: MULTIPLE-SEARCH-REGIONS
+  title: Multiple Search Regions
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Search Results Container ====================
+  id: 83821360205642512
+  identification: 
+    title: Search Results Container
+    type: Static Content
+
+  layout: 
+    sequence: 70
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes # 3292222606380710820
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: Complete Orders =============================
+  id: 844176617156335001
+  identification: 
+    title: Complete Orders
+    type: Static Content
+
+  layout: 
+    sequence: 30
+    parent-region: Search Results Container # 83821360205642512
+    position: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Content Block # 3292251026065710841
+    template-options: 
+    - '#DEFAULT#'
+    - t-ContentBlock--h3
+    - margin-top-sm
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: Cancelled Orders ============================
+  id: 844176746223335002
+  identification: 
+    title: Cancelled Orders
+    type: Static Content
+
+  layout: 
+    sequence: 40
+    parent-region: Search Results Container # 83821360205642512
+    position: BODY
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Content Block # 3292251026065710841
+    template-options: 
+    - '#DEFAULT#'
+    - t-ContentBlock--h3
+    - margin-top-sm
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: Search ======================================
+  id: 844610120260384399
+  identification: 
+    title: Search
+    type: Static Content
+
+  layout: 
+    sequence: 20
+    parent-region: Search Results Container # 83821360205642512
+    position: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard # 3292288565517710863
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--hideHeader
+    - t-Region--noUI
+    - js-headingLevel-2
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Search
+    landmark-label: Orders
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: Search Results ==============================
+  id: 3297629735580079662
+  identification: 
+    title: Search Results
+    type: Search
+
+  layout: 
+    sequence: 10
+    parent-region: Complete Orders # 844176617156335001
+    position: SUB_REGIONS
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Search Results Container # 3292285873630710861
+    template-options: 
+    - t-ResultsRegion--boxed
+    - t-ResultsRegion--iconMd
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: false
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      search-page-item: P207_SEARCH
+      search-as-you-type: true
+      minimum-characters: No minimum (0)
+      lazy-loading: true
+      use-pagination: true
+      results-per-page: 15
+      show-result-count: No
+      custom-layout: false
+      no-query-entered-message: No search conducted.
+      no-results-found-message: |
+        No completed order found.
+        
+
+  search-sources: 
+  - # ====== Search Source: Complete Orders Search Configuration =
+    id: 2480403042520333851
+    identification: 
+      name: Complete Orders Search Configuration
+      search-configuration: Complete Orders Search Configuration # 3298534498479846002
+      use-as-initial-result: false
+
+    layout: 
+      sequence: 10
+
+- # ====== Region: Breadcrumb ==================================
+  id: 3298621922585036869
+  identification: 
+    title: Breadcrumb
+    type: Breadcrumb
+
+  source: 
+    breadcrumb: Breadcrumb # 3292185949438710792
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    position: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Title Bar # 3292301028656710870
+    template-options: 
+    - '#DEFAULT#'
+    - t-BreadcrumbRegion--useBreadcrumbTitle
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    appearance: 
+      breadcrumb-template: Breadcrumb # 3292363060641710911
+      template-options: 
+      - '#DEFAULT#'
+
+- # ====== Region: Search Results ==============================
+  id: 3298622525076036871
+  identification: 
+    title: Search Results
+    type: Search
+
+  layout: 
+    sequence: 10
+    parent-region: Cancelled Orders # 844176746223335002
+    position: SUB_REGIONS
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Search Results Container # 3292285873630710861
+    template-options: 
+    - t-ResultsRegion--boxed
+    - t-ResultsRegion--iconMd
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: false
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      search-page-item: P207_SEARCH
+      search-as-you-type: true
+      minimum-characters: No minimum (0)
+      lazy-loading: true
+      use-pagination: true
+      results-per-page: 15
+      show-result-count: No
+      custom-layout: false
+      overall-sort: Last Modified
+      sort-direction: Descending
+      no-query-entered-message: No search conducted.
+      no-results-found-message: |
+        No cancelled orders found.
+        
+
+  search-sources: 
+  - # ====== Search Source: Cancelled Orders Search Configuration 
+    id: 2480401947991333850
+    identification: 
+      name: Cancelled Orders Search Configuration
+      search-configuration: Cancelled Orders Search Configuration # 2482073843917636718
+      use-as-initial-result: false
+
+    layout: 
+      sequence: 10
+
+- # ====== Region: Overview ====================================
+  id: 4968162151961203941
+  identification: 
+    title: Overview
+    type: Static Content
+
+  source: 
+    html-code: |
+      <p>This page demonstrates how to add <em>multiple regions</em> of the Search type to a single page. Each region can use different or the same search configurations, and all regions will perform a search based on the same input field simultaneously.</p>
+      <p>In this example, two Search regions are created, each referencing a different search configuration.</p>
+      <p>Type a keyword to search (such as "<strong>gary</strong>"). This will show all relevant Complete orders in the left region and Cancelled orders in the right region.</p>
+
+  layout: 
+    sequence: 80
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: 4
+
+  appearance: 
+    template: Standard # 3292288565517710863
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+page-items: 
+- # ====== Page Item: P207_SEARCH ==============================
+  id: 2480400932066333849
+  identification: 
+    name: P207_SEARCH
+    type: Text Field
+
+  label: 
+    label: Search
+    alignment: Left
+
+  settings: 
+    subtype: Search
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 10
+    region: Search # 844610120260384399
+    position: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: 0
+
+  appearance: 
+    template: Hidden # 3292358722170710908
+    template-options: 
+    - '#DEFAULT#'
+    - t-Form-fieldContainer--stretchInputs
+    - t-Form-fieldContainer--large
+    icon: fa-search
+    value-placeholder: Enter your search term, e.g. 'gary'
+
+  validation: 
+    value-required: false
+
+  advanced: 
+    warn-on-unsaved-changes: Ignore
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+buttons: 
+- # ====== Button: PREV ========================================
+  id: 834336567017691396
+  identification: 
+    button-name: PREV
+    label: Previous
+
+  layout: 
+    sequence: 10
+    region: Breadcrumb # 3298621922585036869
+    position: NEXT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Icon # 3292360794092710909
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    icon: fa-angle-left
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:206:&SESSION.::&DEBUG.:::'
+      page: 206 # Filter Search Configurations
+
+    warn-on-unsaved-changes: Do Not Check
+
+- # ====== Button: NEXT ========================================
+  id: 834336810845693362
+  identification: 
+    button-name: NEXT
+    label: Next
+
+  layout: 
+    sequence: 20
+    region: Breadcrumb # 3298621922585036869
+    position: NEXT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Icon # 3292360794092710909
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    icon: fa-angle-right
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:300:&SESSION.::&DEBUG.:::'
+      page: 300 # Advanced
+
+    warn-on-unsaved-changes: Do Not Check
+
+dynamic-actions: 
+- # ====== Dynamic Action: Enter key ===========================
+  id: 840852916172144399
+  identification: 
+    name: Enter key
+
+  execution: 
+    sequence: 10
+
+  when: 
+    event: EVENT.EVENT.BROWSER.KEYPRESS
+    selection-type: Item(s)
+    item(s): 
+    - P207_SEARCH
+
+  client-side-condition: 
+    type: JavaScript expression
+    javascript-expression: |
+      this.browserEvent.keyCode === 13
+      
+
+  execution: 
+    event-scope: Static
+    type: Immediate
+
+  actions: 
+  - # ====== Action: Cancel Event ================================
+    id: 840853343306144399
+    identification: 
+      action: Cancel Event
+
+    execution: 
+      sequence: 10
+      event: Enter key # 840852916172144399
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+

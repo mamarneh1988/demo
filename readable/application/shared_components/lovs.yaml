@@ -1,0 +1,32 @@
+---
+- # ====== List of Values: LOGIN_REMEMBER_USERNAME =============
+  id: 14732961911224885
+  identification: 
+    name: LOGIN_REMEMBER_USERNAME
+
+  source: 
+    location: Static Values
+
+  entries: 
+  - # ====== Entry: Remember username ============================
+    id: 14733243787224886
+    entry: 
+      sequence: 10
+      display: Remember username
+      return: Y
+
+- # ====== List of Values: PRODUCT COLORS ======================
+  id: 3297522641053101398
+  identification: 
+    name: PRODUCT COLORS
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: select distinct json_value(product_details,'$.colour') product_color from eba_demo_search_products
+
+  column-mapping: 
+    return: PRODUCT_COLOR
+    display: PRODUCT_COLOR
+    default-sort: Use Order By from Query
+

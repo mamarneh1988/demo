@@ -1,0 +1,603 @@
+---
+- # ====== Search Configuration: Product Search Configuration Or
+  id: 2481268078274021875
+  identification: 
+    name: Product Search Configuration Oracle Text
+
+  source: 
+    search-type: Oracle Text (Manual)
+    type: SQL Query
+    sql-query: |
+      select p.product_id, 
+             p.product_name, 
+             '$' || p.unit_price unit_price,
+             p.text_index_column,
+             j.description,
+             j.gender, 
+             j.colour,
+             j.brand
+        from eba_demo_search_products p,
+             json_table (
+                 p.product_details, 
+                 '$' 
+                 columns ( 
+                     description varchar2(4000) path '$.description',
+                     colour      varchar2(4000) path '$.colour',
+                     gender      varchar2(4000) path '$.gender',
+                     brand       varchar2(4000) path '$.brand')) j
+    oracle-text-index-column: TEXT_INDEX_COLUMN
+
+  column-mapping: 
+    primary-key-1-column-name: PRODUCT_ID
+    title-column-name: PRODUCT_NAME
+    subtitle-column-name: BRAND
+    description-column-name: DESCRIPTION
+    badge-column-name: UNIT_PRICE
+
+  icon-and-badge: 
+    icon-source: Icon Class
+
+  advanced: 
+    static-id: product_search_configuration_oracle_text
+
+- # ====== Search Configuration: Product Search Configuration Or
+  id: 2481271228236056849
+  identification: 
+    name: Product Search Configuration Oracle Text  Function
+
+  source: 
+    search-type: Oracle Text (Manual)
+    type: SQL Query
+    sql-query: |
+      select p.product_id, 
+             p.product_name, 
+             '$' || p.unit_price unit_price,
+             p.text_index_column,
+             j.description,
+             j.gender, 
+             j.colour,
+             j.brand
+        from eba_demo_search_products p,
+             json_table (
+                 p.product_details, 
+                 '$' 
+                 columns ( 
+                     description varchar2(4000) path '$.description',
+                     colour      varchar2(4000) path '$.colour',
+                     gender      varchar2(4000) path '$.gender',
+                     brand       varchar2(4000) path '$.brand')) j
+    oracle-text-index-column: TEXT_INDEX_COLUMN
+
+  row-search: 
+    oracle-text-function: eba_demo_search_text_pkg.convert_text_query
+
+  column-mapping: 
+    primary-key-1-column-name: PRODUCT_ID
+    title-column-name: PRODUCT_NAME
+    subtitle-column-name: BRAND
+    description-column-name: DESCRIPTION
+
+  icon-and-badge: 
+    icon-source: Icon Class
+
+  advanced: 
+    static-id: product_text_index_function
+
+- # ====== Search Configuration: Cancelled Orders Search Configu
+  id: 2482073843917636718
+  identification: 
+    name: Cancelled Orders Search Configuration
+
+  source: 
+    search-type: Simple (APEX Data Source)
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select order_id,
+             'ORDER#' || order_id as order_title,
+             order_status,
+             order_datetime,
+             customer_id,
+             full_name            as customer_name,
+             items 
+       from eba_demo_search_cust_ord_prd 
+      where order_status = 'CANCELLED'
+    searchable-columns: 'ORDER_TITLE:ORDER_STATUS:ITEMS:ORDER_ID:CUSTOMER_NAME'
+
+  column-mapping: 
+    primary-key-1-column-name: ORDER_ID
+    title-column-name: ORDER_TITLE
+    subtitle-column-name: CUSTOMER_NAME
+    description-column-name: ITEMS
+    badge-column-name: ORDER_STATUS
+    last-modified-column-name: ORDER_DATETIME
+
+  icon-and-badge: 
+    icon-source: Icon Class
+
+  advanced: 
+    static-id: cancelled_orders_search_configuration
+
+- # ====== Search Configuration: Product Search Configuration Wi
+  id: 3292401846029936166
+  identification: 
+    name: Product Search Configuration With Image
+
+  source: 
+    search-type: Simple (APEX Data Source)
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select p.product_id, 
+             p.product_name, 
+             '$' || p.unit_price unit_price,
+             p.product_image,
+             p.image_mime_type,
+             j.description,
+             j.gender, 
+             j.colour,
+             j.brand
+        from eba_demo_search_products p,
+             json_table (
+                 p.product_details, 
+                 '$' 
+                 columns ( 
+                     description varchar2(4000) path '$.description',
+                     colour      varchar2(4000) path '$.colour',
+                     gender      varchar2(4000) path '$.gender',
+                     brand       varchar2(4000) path '$.brand')) j
+    searchable-columns: 'PRODUCT_NAME:DESCRIPTION:GENDER:COLOUR:BRAND'
+
+  column-mapping: 
+    primary-key-1-column-name: PRODUCT_ID
+    title-column-name: PRODUCT_NAME
+    subtitle-column-name: BRAND
+    description-column-name: DESCRIPTION
+    badge-column-name: UNIT_PRICE
+
+  link: 
+    type: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:205:&APP_SESSION.::&DEBUG.:205:P205_PRODUCT_ID:&PRODUCT_ID.'
+      page: 205 # Product Details
+      clear-cache: 205
+      values: 
+        p205_product_id: '&PRODUCT_ID.'
+
+  icon-and-badge: 
+    icon-source: Image BLOB Column
+    image-column: PRODUCT_IMAGE
+
+  blob-attributes: 
+    mime-type-column: IMAGE_MIME_TYPE
+
+  advanced: 
+    static-id: product_image
+
+- # ====== Search Configuration: Product Search Configuration ==
+  id: 3292409417919361574
+  identification: 
+    name: Product Search Configuration
+
+  source: 
+    search-type: Simple (APEX Data Source)
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select p.product_id, 
+             p.product_name, 
+             '$' || p.unit_price unit_price,
+             j.description,
+             j.gender, 
+             j.colour,
+             j.brand
+        from eba_demo_search_products p,
+             json_table (
+                 p.product_details, 
+                 '$' 
+                 columns ( 
+                     description varchar2(4000) path '$.description',
+                     colour      varchar2(4000) path '$.colour',
+                     gender      varchar2(4000) path '$.gender',
+                     brand       varchar2(4000) path '$.brand')) j
+    searchable-columns: 'PRODUCT_NAME:DESCRIPTION:GENDER:COLOUR:BRAND'
+
+  column-mapping: 
+    primary-key-1-column-name: PRODUCT_ID
+    title-column-name: PRODUCT_NAME
+    subtitle-column-name: BRAND
+    description-column-name: DESCRIPTION
+    badge-column-name: UNIT_PRICE
+    custom-column-name-1: COLOUR
+    custom-column-name-2: GENDER
+
+  link: 
+    type: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:205:&APP_SESSION.::&DEBUG.::P205_PRODUCT_ID:&PRODUCT_ID.'
+      page: 205 # Product Details
+      values: 
+        p205_product_id: '&PRODUCT_ID.'
+
+  icon-and-badge: 
+    icon-source: Icon Class
+
+  performance: 
+    maximum-rows-to-process: 5
+
+  advanced: 
+    static-id: product
+
+- # ====== Search Configuration: Store Search Configuration ====
+  id: 3292409798303399300
+  identification: 
+    name: Store Search Configuration
+
+  source: 
+    search-type: Simple (APEX Data Source)
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select store_id,
+             store_name,
+             web_address,
+             physical_address
+        from eba_demo_search_stores
+    searchable-columns: 'STORE_NAME:PHYSICAL_ADDRESS'
+
+  column-mapping: 
+    primary-key-1-column-name: STORE_ID
+    title-column-name: STORE_NAME
+    subtitle-column-name: WEB_ADDRESS
+    description-column-name: PHYSICAL_ADDRESS
+
+  link: 
+    type: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:106:&APP_SESSION.::&DEBUG.:RR:P106_STORE_ID:&STORE_ID.'
+      page: 106 # Store Details
+      clear-cache: RR
+      values: 
+        p106_store_id: '&STORE_ID.'
+
+  icon-and-badge: 
+    icon-source: Icon Class
+
+  performance: 
+    maximum-rows-to-process: 5
+
+  advanced: 
+    static-id: store
+
+- # ====== Search Configuration: Movie Search Configuration ====
+  id: 3292434187072642782
+  identification: 
+    name: Movie Search Configuration
+
+  source: 
+    search-type: Simple (APEX Data Source)
+    location: REST Source
+    rest-source: Search Movie # 3292421760424576665
+
+  column-mapping: 
+    primary-key-1-column-name: ID
+    title-column-name: TITLE
+    description-column-name: OVERVIEW
+    badge-column-name: VOTE_AVERAGE
+    last-modified-column-name: RELEASE_DATE
+
+  link: 
+    type: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:104:&APP_SESSION.::&DEBUG.::P104_ID:&ID.'
+      page: 104 # Movie Details
+      values: 
+        p104_id: '&ID.'
+
+  icon-and-badge: 
+    icon-source: Image URL
+    image-url: '&POSTER_PATH.'
+    icon-css-classes: fa-film
+
+  advanced: 
+    static-id: movie
+
+- # ====== Search Configuration: Company Search Configuration ==
+  id: 3292435022790660244
+  identification: 
+    name: Company Search Configuration
+
+  source: 
+    search-type: Simple (APEX Data Source)
+    location: REST Source
+    rest-source: Search Company # 3292432876264625593
+
+  column-mapping: 
+    primary-key-1-column-name: ID
+    title-column-name: NAME
+    subtitle-column-name: ORIGIN_COUNTRY
+
+  link: 
+    type: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:105:&APP_SESSION.::&DEBUG.::P105_ID:&ID.'
+      page: 105 # Company Details
+      values: 
+        p105_id: '&ID.'
+
+  icon-and-badge: 
+    icon-source: Image URL
+    image-url: '&LOGO_PATH.'
+    icon-css-classes: fa-video-camera
+
+  advanced: 
+    static-id: company
+
+- # ====== Search Configuration: Product Search Configuration Wi
+  id: 3292441988717180685
+  identification: 
+    name: Product Search Configuration With Prefix
+    search-query-prefix: prod
+
+  source: 
+    search-type: Simple (APEX Data Source)
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select p.product_id, 
+             p.product_name, 
+             '$' || p.unit_price unit_price,
+             j.description,
+             j.gender, 
+             j.colour,
+             j.brand
+        from eba_demo_search_products p,
+             json_table (
+                 p.product_details, 
+                 '$' 
+                 columns ( 
+                     description varchar2(4000) path '$.description',
+                     colour      varchar2(4000) path '$.colour',
+                     gender      varchar2(4000) path '$.gender',
+                     brand       varchar2(4000) path '$.brand')) j
+    searchable-columns: 'PRODUCT_NAME:DESCRIPTION:GENDER:COLOUR:BRAND'
+
+  column-mapping: 
+    primary-key-1-column-name: PRODUCT_ID
+    title-column-name: PRODUCT_NAME
+    subtitle-column-name: BRAND
+    description-column-name: DESCRIPTION
+    badge-column-name: UNIT_PRICE
+
+  icon-and-badge: 
+    icon-source: Icon Class
+
+  performance: 
+    maximum-rows-to-process: 5
+
+  advanced: 
+    static-id: product_prefix
+
+- # ====== Search Configuration: Store Search Configuration With
+  id: 3292442809922199225
+  identification: 
+    name: Store Search Configuration With Prefix
+    search-query-prefix: store
+
+  source: 
+    search-type: Simple (APEX Data Source)
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select store_id,
+             store_name,
+             web_address,
+             physical_address,
+             longitude,
+             latitude
+        from eba_demo_search_stores
+    searchable-columns: 'STORE_NAME:PHYSICAL_ADDRESS'
+
+  column-mapping: 
+    primary-key-1-column-name: STORE_ID
+    title-column-name: STORE_NAME
+    subtitle-column-name: WEB_ADDRESS
+    description-column-name: PHYSICAL_ADDRESS
+
+  icon-and-badge: 
+    icon-source: Icon Class
+
+  performance: 
+    maximum-rows-to-process: 5
+
+  advanced: 
+    static-id: store_prefix
+
+- # ====== Search Configuration: Customer Search Configuration =
+  id: 3292447697491303239
+  identification: 
+    name: Customer Search Configuration
+
+  source: 
+    search-type: Simple (APEX Data Source)
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: EBA_DEMO_SEARCH_CUSTOMERS
+    searchable-columns: 'FULL_NAME:EMAIL_ADDRESS'
+
+  column-mapping: 
+    primary-key-1-column-name: CUSTOMER_ID
+    title-column-name: FULL_NAME
+    description-column-name: EMAIL_ADDRESS
+
+  link: 
+    type: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:203:&APP_SESSION.::&DEBUG.:203:P203_CUSTOMER_ID:&CUSTOMER_ID.'
+      page: 203 # Customer Details
+      clear-cache: 203
+      values: 
+        p203_customer_id: '&CUSTOMER_ID.'
+
+  icon-and-badge: 
+    icon-source: Icon Class
+
+  performance: 
+    maximum-rows-to-process: 5
+
+  advanced: 
+    static-id: customer
+
+- # ====== Search Configuration: Product Search Configuration Cu
+  id: 3292696368974484275
+  identification: 
+    name: Product Search Configuration Custom Display
+
+  source: 
+    search-type: Simple (APEX Data Source)
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select p.product_id, 
+             p.product_name, 
+             '$' || p.unit_price unit_price,
+             p.product_image,
+             p.image_mime_type,
+             substr(j.description,1,100) as description,
+             j.gender, 
+             j.colour,
+             j.brand,
+             APEX_UTIL.PREPARE_URL(p_url => 'f?p=' || :APP_ID || ':205:'|| :APP_SESSION ||'::NO::P205_PRODUCT_ID:'||p.product_id) product_url
+        from eba_demo_search_products p,
+             json_table (
+                 p.product_details, 
+                 '$' 
+                 columns ( 
+                     description varchar2(4000) path '$.description',
+                     colour      varchar2(4000) path '$.colour',
+                     gender      varchar2(4000) path '$.gender',
+                     brand       varchar2(4000) path '$.brand')) j
+    searchable-columns: 'PRODUCT_NAME:DESCRIPTION:GENDER:COLOUR:BRAND'
+
+  column-mapping: 
+    primary-key-1-column-name: PRODUCT_ID
+    title-column-name: PRODUCT_NAME
+    subtitle-column-name: BRAND
+    description-column-name: DESCRIPTION
+    badge-column-name: UNIT_PRICE
+
+  icon-and-badge: 
+    icon-source: Image BLOB Column
+    image-column: PRODUCT_IMAGE
+
+  blob-attributes: 
+    mime-type-column: IMAGE_MIME_TYPE
+
+  icon-and-badge: 
+    icon-css-classes: fa-package
+
+  column-formatting: 
+    html-expression: |
+      <div class="a-ResultsItem &RESULT_CSS_CLASSES!ATTR.">
+          {if ?ICON_VALUE/}
+            {case ICON_TYPE/}
+              {when INITIALS/}
+                <div class="a-ResultItem-initials u-color-var">&ICON_VALUE.</div>
+              {when URL/}
+                <div class="a-ResultItem-image"><img src="&ICON_VALUE!ATTR." alt=""/></div>
+              {when CLASS/}
+                <div class="a-ResultItem-icon u-color-var"><span class="fa &ICON_VALUE!ATTR." aria-hidden="true"></span></div>
+            {endcase/}
+            {else/}
+                <div class="a-ResultItem-image"><img src="#APP_FILES#image_not_found.png" alt="" width="150"/></div>
+          {endif/}
+          <div class="a-ResultsItem-content">
+            <div class="a-ResultsItem-details">
+              <div class="a-ResultsItem-header">
+                  <span class="a-ResultsItem-title"><a href="&PRODUCT_URL!ATTR." >&PRODUCT_NAME.</a></span>
+              </div>
+              <div class="a-ResultsItem-subTitle"><span>Store : </span>&BRAND.</div>
+              <div class="a-ResultsItem-description">&DESCRIPTION. ...</div>
+            </div>
+            <div class="a-ResultsItem-price">&UNIT_PRICE.</div>
+          </div>
+        </div>
+
+  performance: 
+    maximum-rows-to-process: 5
+
+  advanced: 
+    static-id: product_custom
+
+- # ====== Search Configuration: Store Search Configuration With
+  id: 3297472080320318775
+  identification: 
+    name: Store Search Configuration With Location
+
+  source: 
+    search-type: Simple (APEX Data Source)
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select store_id,
+             store_name,
+             web_address,
+             physical_address,
+             longitude,
+             latitude
+        from eba_demo_search_stores
+    searchable-columns: 'STORE_NAME:PHYSICAL_ADDRESS'
+
+  column-mapping: 
+    primary-key-1-column-name: STORE_ID
+    title-column-name: STORE_NAME
+    subtitle-column-name: WEB_ADDRESS
+    description-column-name: PHYSICAL_ADDRESS
+    custom-column-name-1: LONGITUDE
+    custom-column-name-2: LATITUDE
+
+  icon-and-badge: 
+    icon-source: Icon Class
+
+  performance: 
+    maximum-rows-to-process: 5
+
+  advanced: 
+    static-id: store_map
+
+- # ====== Search Configuration: Complete Orders Search Configur
+  id: 3298534498479846002
+  identification: 
+    name: Complete Orders Search Configuration
+
+  source: 
+    search-type: Simple (APEX Data Source)
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select order_id,
+             'ORDER#'||order_id as order_title,
+             order_status,
+             order_datetime,
+             customer_id,
+             full_name          as customer_name,
+             items 
+       from eba_demo_search_cust_ord_prd 
+      where order_status = 'COMPLETE'
+    searchable-columns: 'ORDER_TITLE:ORDER_STATUS:ITEMS:ORDER_ID:CUSTOMER_NAME'
+
+  column-mapping: 
+    primary-key-1-column-name: ORDER_ID
+    title-column-name: ORDER_TITLE
+    subtitle-column-name: CUSTOMER_NAME
+    description-column-name: ITEMS
+    badge-column-name: ORDER_STATUS
+    last-modified-column-name: ORDER_DATETIME
+
+  icon-and-badge: 
+    icon-source: Icon Class
+
+  advanced: 
+    static-id: complete_orders_search_configuration
+

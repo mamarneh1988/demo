@@ -1,0 +1,1123 @@
+---
+# ====== Page: Movie Details =================================
+id: 104
+identification: 
+  name: Movie Details
+  alias: MOVIE-DETAILS
+  title: Movie Details
+
+appearance: 
+  page-mode: Modal Dialog
+  dialog-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+dialog: 
+  chained: true
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+css: 
+  inline: |
+    /* Customize Movie Header Card */
+    .movie-header-card.a-CardView {
+        /* Increase the font sizes for movie name and tag line */
+        --a-cv-title-font-size: 24px;
+        --a-cv-subtitle-font-size: 16px;
+    
+        /* Add additional spacing around the header content */
+        --ut-cv-subtitle-margin: 16px 0 0 0;
+        display: flex;
+        padding: 24px 0;
+    }
+    
+    .movie-header-card .a-CardView-header {
+        /* Center Title and Badge */
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .a-CardView-media{
+        background: black;
+    }
+    .a-CardView-media img{
+        opacity: .7;
+    }
+    .movie-header-card .a-CardView-body {
+        /* Remove unnecessary padding */
+        padding-top: 0;
+    }
+    .movie-details {
+        /* Center align Card Body text */
+        text-align: center;
+    }
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Header ======================================
+  id: 2483724832142972958
+  identification: 
+    title: Header
+    type: Cards
+
+  source: 
+    location: REST Source
+    rest-source: Movie Details # 2483678588592569500
+
+  local-post-processing: 
+    type: SQL Query
+    sql-query: |
+      select id,
+             title,
+             'https://image.tmdb.org/t/p/w500' || poster_path                                                    as poster_url,
+             'https://image.tmdb.org/t/p/w500' || backdrop_path                                                  as backdrop_url,
+             release_date,
+             runtime,
+             trunc(runtime/60) || 'hr ' || extract (minute from numtodsinterval((runtime/60), 'HOUR' )) || 'min' as runtime_friendly,
+             vote_average,
+             tagline
+        from #APEX$SOURCE_DATA#
+
+  layout: 
+    sequence: 220
+    parent-region: Movie Details # 2483747007646992454
+    position: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Cards Container # 3292229738676710823
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  parameters: 
+  - # ====== Parameter: 3335999863464909434 ======================
+    id: 2483725058479972960
+    identification: 
+      name: movie_id # 2483679241110569500
+
+    operation: 
+      http-method: All
+      database-operation: All
+
+    value: 
+      type: Item
+      item: P104_ID
+
+  attributes: 
+    id: 2483724973359972959
+    appearance: 
+      layout: Horizontal (Row)
+      css-classes: 
+      - movie-header-card
+
+    card: 
+      primary-key-column-1: ID
+
+    title: 
+      advanced-formatting: false
+      column: TITLE
+
+    subtitle: 
+      advanced-formatting: false
+      column: TAGLINE
+
+    body: 
+      advanced-formatting: true
+      html-expression: |
+        <div class="movie-details">
+            <span title="Release Date">Released &RELEASE_DATE.</span> &middot; 
+            <span title="Runtime">&RUNTIME_FRIENDLY.</span> &middot;
+            <span title="&VOTE_AVERAGE. out of 10"><span class="fa fa-star" style="color:gold;" aria-hidden="true"></span> &VOTE_AVERAGE.</span>
+        </div>
+
+    secondary-body: 
+      advanced-formatting: false
+
+    icon-and-badge: 
+      icon-source: Image URL
+      image-url: '&POSTER_URL.'
+      icon-css-classes: w100 h100
+      icon-position: Start
+
+    media: 
+      advanced-formatting: false
+      source: Image URL
+      url: '&BACKDROP_URL.'
+      position: As Background Image
+      appearance: Auto
+      sizing: Cover
+
+    performance: 
+      lazy-loading: false
+
+    pagination: 
+      type: Scroll
+      show-total-row-count: false
+
+- # ====== Region: Overview ====================================
+  id: 2483725130005972961
+  identification: 
+    title: Overview
+    type: Static Content
+
+  source: 
+    html-code: '&P104_OVERVIEW.'
+
+  layout: 
+    sequence: 230
+    parent-region: Movie Details # 2483747007646992454
+    position: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Content Block # 3292251026065710841
+    template-options: 
+    - '#DEFAULT#'
+    - t-ContentBlock--h3
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: Movie Details ===============================
+  id: 2483747007646992454
+  identification: 
+    title: Movie Details
+    type: Form
+
+  source: 
+    location: REST Source
+    rest-source: Movie Details # 2483678588592569500
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes # 3292222606380710820
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    edit: 
+      enabled: false
+
+  parameters: 
+  - # ====== Parameter: 3335999863464909434 ======================
+    id: 2483747505245992454
+    identification: 
+      name: movie_id # 2483679241110569500
+
+    operation: 
+      http-method: All
+      database-operation: All
+
+    value: 
+      type: Item
+      item: P104_ID
+
+- # ====== Region: Buttons =====================================
+  id: 2483762627149992467
+  identification: 
+    title: Buttons
+    type: Static Content
+
+  layout: 
+    sequence: 20
+    parent-region: No Parent
+    position: REGION_POSITION_03
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Buttons Container # 3292225365430710821
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: Text (escape special characters)
+      show-line-breaks: true
+
+page-items: 
+- # ====== Page Item: P104_ID ==================================
+  id: 2483747912004992455
+  identification: 
+    name: P104_ID
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 10
+    region: Movie Details # 2483747007646992454
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Movie Details # 2483747007646992454
+    column: ID
+    data-type: NUMBER
+    query-only: false
+    primary-key: true
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Checksum Required - Session Level
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P104_ADULT ===============================
+  id: 2483748313231992455
+  identification: 
+    name: P104_ADULT
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 20
+    region: Movie Details # 2483747007646992454
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Movie Details # 2483747007646992454
+    column: ADULT
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Restricted - May not be set from browser
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P104_TITLE ===============================
+  id: 2483748745055992456
+  identification: 
+    name: P104_TITLE
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 30
+    region: Movie Details # 2483747007646992454
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Movie Details # 2483747007646992454
+    column: TITLE
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Restricted - May not be set from browser
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P104_VIDEO ===============================
+  id: 2483749101749992456
+  identification: 
+    name: P104_VIDEO
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 40
+    region: Movie Details # 2483747007646992454
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Movie Details # 2483747007646992454
+    column: VIDEO
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Restricted - May not be set from browser
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P104_BUDGET ==============================
+  id: 2483749529390992456
+  identification: 
+    name: P104_BUDGET
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 50
+    region: Movie Details # 2483747007646992454
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Movie Details # 2483747007646992454
+    column: BUDGET
+    data-type: NUMBER
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Restricted - May not be set from browser
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P104_STATUS ==============================
+  id: 2483749897137992456
+  identification: 
+    name: P104_STATUS
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 60
+    region: Movie Details # 2483747007646992454
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Movie Details # 2483747007646992454
+    column: STATUS
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Restricted - May not be set from browser
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P104_IMDB_ID =============================
+  id: 2483750294633992457
+  identification: 
+    name: P104_IMDB_ID
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 70
+    region: Movie Details # 2483747007646992454
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Movie Details # 2483747007646992454
+    column: IMDB_ID
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Restricted - May not be set from browser
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P104_REVENUE =============================
+  id: 2483750695345992457
+  identification: 
+    name: P104_REVENUE
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 80
+    region: Movie Details # 2483747007646992454
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Movie Details # 2483747007646992454
+    column: REVENUE
+    data-type: NUMBER
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Restricted - May not be set from browser
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P104_RUNTIME =============================
+  id: 2483751154126992457
+  identification: 
+    name: P104_RUNTIME
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 90
+    region: Movie Details # 2483747007646992454
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Movie Details # 2483747007646992454
+    column: RUNTIME
+    data-type: NUMBER
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Restricted - May not be set from browser
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P104_TAGLINE =============================
+  id: 2483751508551992458
+  identification: 
+    name: P104_TAGLINE
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 100
+    region: Movie Details # 2483747007646992454
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Movie Details # 2483747007646992454
+    column: TAGLINE
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Restricted - May not be set from browser
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P104_HOMEPAGE ============================
+  id: 2483751946045992458
+  identification: 
+    name: P104_HOMEPAGE
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 110
+    region: Movie Details # 2483747007646992454
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Movie Details # 2483747007646992454
+    column: HOMEPAGE
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Restricted - May not be set from browser
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P104_OVERVIEW ============================
+  id: 2483752352706992458
+  identification: 
+    name: P104_OVERVIEW
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 120
+    region: Movie Details # 2483747007646992454
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Movie Details # 2483747007646992454
+    column: OVERVIEW
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Restricted - May not be set from browser
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P104_POPULARITY ==========================
+  id: 2483752734891992459
+  identification: 
+    name: P104_POPULARITY
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 130
+    region: Movie Details # 2483747007646992454
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Movie Details # 2483747007646992454
+    column: POPULARITY
+    data-type: NUMBER
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Restricted - May not be set from browser
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P104_VOTE_COUNT ==========================
+  id: 2483753094018992459
+  identification: 
+    name: P104_VOTE_COUNT
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 140
+    region: Movie Details # 2483747007646992454
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Movie Details # 2483747007646992454
+    column: VOTE_COUNT
+    data-type: NUMBER
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Restricted - May not be set from browser
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P104_POSTER_PATH =========================
+  id: 2483753533457992459
+  identification: 
+    name: P104_POSTER_PATH
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 150
+    region: Movie Details # 2483747007646992454
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Movie Details # 2483747007646992454
+    column: POSTER_PATH
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Restricted - May not be set from browser
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P104_RELEASE_DATE ========================
+  id: 2483753928808992460
+  identification: 
+    name: P104_RELEASE_DATE
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 160
+    region: Movie Details # 2483747007646992454
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Movie Details # 2483747007646992454
+    column: RELEASE_DATE
+    data-type: DATE
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Restricted - May not be set from browser
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P104_VOTE_AVERAGE ========================
+  id: 2483754330308992460
+  identification: 
+    name: P104_VOTE_AVERAGE
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 170
+    region: Movie Details # 2483747007646992454
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Movie Details # 2483747007646992454
+    column: VOTE_AVERAGE
+    data-type: NUMBER
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Restricted - May not be set from browser
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P104_BACKDROP_PATH =======================
+  id: 2483754739072992460
+  identification: 
+    name: P104_BACKDROP_PATH
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 180
+    region: Movie Details # 2483747007646992454
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Movie Details # 2483747007646992454
+    column: BACKDROP_PATH
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Restricted - May not be set from browser
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P104_ORIGINAL_TITLE ======================
+  id: 2483755152141992461
+  identification: 
+    name: P104_ORIGINAL_TITLE
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 190
+    region: Movie Details # 2483747007646992454
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Movie Details # 2483747007646992454
+    column: ORIGINAL_TITLE
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Restricted - May not be set from browser
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P104_ORIGINAL_LANGUAGE ===================
+  id: 2483755521711992461
+  identification: 
+    name: P104_ORIGINAL_LANGUAGE
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 200
+    region: Movie Details # 2483747007646992454
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Movie Details # 2483747007646992454
+    column: ORIGINAL_LANGUAGE
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Restricted - May not be set from browser
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P104_BELONGS_TO_COLLECTION ===============
+  id: 2483755946072992461
+  identification: 
+    name: P104_BELONGS_TO_COLLECTION
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 210
+    region: Movie Details # 2483747007646992454
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Movie Details # 2483747007646992454
+    column: BELONGS_TO_COLLECTION
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Restricted - May not be set from browser
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+buttons: 
+- # ====== Button: CANCEL ======================================
+  id: 2483763070408992467
+  identification: 
+    button-name: CANCEL
+    label: Cancel
+
+  layout: 
+    sequence: 10
+    region: Buttons # 2483762627149992467
+    position: CLOSE
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text # 3292361476404710910
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: true
+
+dynamic-actions: 
+- # ====== Dynamic Action: Cancel Dialog =======================
+  id: 2483763137399992467
+  identification: 
+    name: Cancel Dialog
+
+  execution: 
+    sequence: 10
+
+  when: 
+    event: EVENT.EVENT.BROWSER.CLICK
+    selection-type: Button
+    button: CANCEL # 2483763070408992467
+
+  execution: 
+    event-scope: Static
+    type: Immediate
+
+  actions: 
+  - # ====== Action: Cancel Dialog ===============================
+    id: 2483763968805992468
+    identification: 
+      action: Cancel Dialog
+
+    execution: 
+      sequence: 10
+      event: Cancel Dialog # 2483763137399992467
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+processes: 
+- # ====== Process: Initialize form Movie Details ==============
+  id: 2483764439016992469
+  identification: 
+    name: Initialize form Movie Details
+    type: Form - Initialization
+    form-region: Movie Details # 2483747007646992454
+
+  execution: 
+    sequence: 10
+    point: Before Header
+    run-process: Once Per Page Visit (default)
+
+- # ====== Process: Close Dialog ===============================
+  id: 2483764830654992469
+  identification: 
+    name: Close Dialog
+    type: Close Dialog
+
+  execution: 
+    sequence: 50
+    point: Processing
+    run-process: Once Per Page Visit (default)
+
+  error: 
+    display-location: Inline in Notification
+
+  server-side-condition: 
+    type: Request is contained in Value
+    value: CREATE,SAVE,DELETE
+

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+############ ddl.parms  ########################################
+BODY                           : ON
+COLLATION_CLAUSE               : NEVER
+CONSTRAINTS                    : ON
+CONSTRAINTS_AS_ALTER           : ON
+EMIT_SCHEMA                    : OFF
+FORCE                          : ON
+INHERIT                        : ON
+INSERT                         : ON
+OID                            : ON
+PARTITIONING                   : OFF
+PRETTY                         : ON
+REF_CONSTRAINTS                : ON
+SEGMENT_ATTRIBUTES             : OFF
+SIZE_BYTE_KEYWORD              : ON
+SPECIFICATION                  : ON
+SQLTERMINATOR                  : ON
+STORAGE                        : OFF
+TABLESPACE                     : OFF
+
+############ lb.parameters ########################################
+basecommand                    : lb
+command                        : generate-schema
+database-changelog-table-name  : DATABASECHANGELOG
+fail-on-error                  : false
+grants                         : false
+log                            : false
+replace                        : true
+runalways                      : false
+runonchange                    : true
+split                          : true
+sqlclversion                   : 23.2.0.0
+synonyms                       : false
+############ End Parameters #######################################
+-->
+<databaseChangeLog 
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+        xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+  <include file="table/eba_demo_search_stores_table.xml"/> 
+  <include file="table/eba_demo_search_products_table.xml"/> 
+  <include file="table/test_table_table.xml"/> 
+  <include file="table/eba_demo_search_web_creds_table.xml"/> 
+  <include file="table/eba_demo_search_customers_table.xml"/> 
+  <include file="package_spec/eba_demo_search_data_pkg_package_spec.xml"/> 
+  <include file="package_spec/eba_demo_search_text_pkg_package_spec.xml"/> 
+  <include file="table/eba_demo_search_orders_table.xml"/> 
+  <include file="table/eba_demo_search_order_items_table.xml"/> 
+  <include file="view/eba_demo_search_cust_ord_prd_view.xml"/> 
+  <include file="view/eba_demo_search_prd_orders_view.xml"/> 
+  <include file="view/eba_demo_search_prd_reviews_view.xml"/> 
+  <include file="view/eba_demo_search_str_orders_view.xml"/> 
+  <include file="view/eba_demo_search_str_ord_stat_view.xml"/> 
+  <include file="function/eba_demo_search_error_handling_function.xml"/> 
+  <include file="index/eba_demo_search_cust_name_i_index.xml"/> 
+  <include file="index/eba_demo_search_ord_str_id_i_index.xml"/> 
+  <include file="index/eba_demo_search_ord_item_prd_u_index.xml"/> 
+  <include file="index/eba_demo_search_cust_email_u_index.xml"/> 
+  <include file="index/eba_demo_search_store_name_u_index.xml"/> 
+  <include file="index/eba_demo_search_ord_cust_id_i_index.xml"/> 
+  <include file="trigger/text_index_pending_trigger.xml"/> 
+  <include file="package_body/eba_demo_search_data_pkg_package_body.xml"/> 
+  <include file="package_body/eba_demo_search_text_pkg_package_body.xml"/> 
+</databaseChangeLog> 

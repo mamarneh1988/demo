@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog 
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
+	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+	<changeSet id="c51b5cb5868e36aec59ea794ec4cbcb67f8aea54" author="(DEMO)-Generated" failOnError="false"   runOnChange="true" runAlways="false"  >
+		<n0:createSxmlObject objectName="EBA_DEMO_SEARCH_CUST_ORD_PRD" objectType="VIEW" ownerName="DEMO"  replaceIfExists="true" >
+			<n0:source><![CDATA[
+  <VIEW xmlns="http://xmlns.oracle.com/ku" version="1.0">
+   <SCHEMA>DEMO</SCHEMA>
+   <NAME>EBA_DEMO_SEARCH_CUST_ORD_PRD</NAME>
+   <DEFAULT_COLLATION>USING_NLS_COMP</DEFAULT_COLLATION>
+   <COL_LIST>
+      <COL_LIST_ITEM>
+         <NAME>ORDER_ID</NAME>
+      </COL_LIST_ITEM>
+      <COL_LIST_ITEM>
+         <NAME>ORDER_STATUS</NAME>
+      </COL_LIST_ITEM>
+      <COL_LIST_ITEM>
+         <NAME>ORDER_DATETIME</NAME>
+      </COL_LIST_ITEM>
+      <COL_LIST_ITEM>
+         <NAME>CUSTOMER_ID</NAME>
+      </COL_LIST_ITEM>
+      <COL_LIST_ITEM>
+         <NAME>EMAIL_ADDRESS</NAME>
+      </COL_LIST_ITEM>
+      <COL_LIST_ITEM>
+         <NAME>FULL_NAME</NAME>
+      </COL_LIST_ITEM>
+      <COL_LIST_ITEM>
+         <NAME>ORDER_TOTAL</NAME>
+      </COL_LIST_ITEM>
+      <COL_LIST_ITEM>
+         <NAME>ITEMS</NAME>
+      </COL_LIST_ITEM>
+   </COL_LIST>
+   <SUBQUERY>select o.order_id,
+      o.order_status,
+      o.order_datetime,
+      c.customer_id,
+      c.email_address,
+      c.full_name,
+      sum ( oi.quantity * oi.unit_price ) order_total,
+      listagg (p.product_name, ', ' on overflow truncate '...' with count)   
+         within group ( order by oi.line_item_id ) items  
+from eba_demo_search_orders o  
+join eba_demo_search_order_items oi 
+  on o.order_id = oi.order_id  
+join eba_demo_search_customers c
+  on o.customer_id = c.customer_id  
+join eba_demo_search_products p
+  on oi.product_id = p.product_id
+group by o.order_id,
+        o.order_datetime,
+        o.order_status,
+        c.customer_id,
+        c.email_address,
+        c.full_name
+</SUBQUERY>
+</VIEW>]]></n0:source>
+		</n0:createSxmlObject>
+	</changeSet>
+</databaseChangeLog>

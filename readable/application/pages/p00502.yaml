@@ -1,0 +1,426 @@
+---
+# ====== Page: Application Theme Style =======================
+id: 502
+identification: 
+  name: Application Theme Style
+  alias: APPLICATION-THEME-STYLE
+  title: Application Theme Style
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: false
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: On
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Always
+
+server-cache: 
+  caching: Disabled
+
+help: 
+  help-text: No help is available for this page.
+
+regions: 
+- # ====== Region: Breadcrumb ==================================
+  id: 2257352947059213671
+  identification: 
+    title: Breadcrumb
+    type: Breadcrumb
+
+  source: 
+    breadcrumb: Breadcrumb # 3292185949438710792
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    position: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Title Bar # 3292301028656710870
+    template-options: 
+    - '#DEFAULT#'
+    - t-BreadcrumbRegion--useBreadcrumbTitle
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    appearance: 
+      breadcrumb-template: Breadcrumb # 3292363060641710911
+      template-options: 
+      - '#DEFAULT#'
+
+- # ====== Region: Set User Interface Theme Style ==============
+  id: 4238238722696302141
+  identification: 
+    title: Set User Interface Theme Style
+    type: Static Content
+
+  layout: 
+    sequence: 20
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard # 3292288565517710863
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--hiddenOverflow
+    - t-Region--hideHeader
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: About this page =============================
+  id: 4238239120299302141
+  identification: 
+    title: About this page
+    type: Static Content
+
+  source: 
+    html-code: <p>Select the look and feel of the application you would like to use for all users of this application.</p>
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard # 3292288565517710863
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--hideHeader
+    - t-Region--scrollBody
+    css-classes: 
+    - infoTextRegion
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: items =======================================
+  id: 4238239522950302142
+  identification: 
+    title: items
+    type: Static Content
+
+  layout: 
+    sequence: 30
+    parent-region: Set User Interface Theme Style # 4238238722696302141
+    position: SUB_REGIONS
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes # 3292222606380710820
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: true
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+page-items: 
+- # ====== Page Item: P502_DESKTOP_THEME_STYLE_ID ==============
+  id: 835465132080773355
+  identification: 
+    name: P502_DESKTOP_THEME_STYLE_ID
+    type: Select List
+
+  label: 
+    label: Desktop Theme Style
+    alignment: Left
+
+  settings: 
+    page-action-on-selection: None
+    allow-multi-selection: false
+
+  layout: 
+    sequence: 10
+    region: items # 4238239522950302142
+    position: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: 3
+
+  appearance: 
+    template: Required # 3292359063821710908
+    template-options: 
+    - '#DEFAULT#'
+    - t-Form-fieldContainer--large
+    height: 1
+
+  validation: 
+    value-required: true
+
+  list-of-values: 
+    type: SQL Query
+    sql-query: |
+      select s.name d,
+                s.theme_style_id r
+      from apex_application_theme_styles s, apex_application_themes t
+      where s.application_id = t.application_id
+      and s.theme_number = t.theme_number
+      and s.application_id = :app_id
+      and t.ui_type_name   = 'DESKTOP'
+      and t.is_current = 'Yes'
+      order by 1
+    display-extra-values: false
+    display-null-value: false
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: SQL Query (return single value)
+    sql-query: |
+      select s.theme_style_id
+      from apex_application_theme_styles s, apex_application_themes t
+      where s.application_id = t.application_id
+      and s.theme_number = t.theme_number
+      and s.application_id = :app_id
+      and t.ui_type_name   = 'DESKTOP'
+      and s.is_current = 'Yes'
+    used: Always, replacing any existing value in session state
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  server-side-condition: 
+    type: Rows returned
+    sql-query: |
+      select 1
+      from apex_application_theme_styles s, apex_application_themes t
+      where s.application_id = t.application_id
+      and s.theme_number = t.theme_number
+      and s.application_id = :app_id
+      and t.ui_type_name   = 'DESKTOP'
+      and t.is_current = 'Yes'
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: Blocklist HTML command characters (<>")
+
+buttons: 
+- # ====== Button: CANCEL ======================================
+  id: 835463707709773353
+  identification: 
+    button-name: CANCEL
+    label: Cancel
+
+  layout: 
+    sequence: 10
+    region: Breadcrumb # 2257352947059213671
+    position: CLOSE
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text # 3292361476404710910
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:administration:&SESSION.::&DEBUG.:::'
+      page: ADMINISTRATION
+
+    warn-on-unsaved-changes: Do Not Check
+
+- # ====== Button: SAVE ========================================
+  id: 835464121552773353
+  identification: 
+    button-name: SAVE
+    label: Apply Changes
+
+  layout: 
+    sequence: 20
+    region: Breadcrumb # 2257352947059213671
+    position: CREATE
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text # 3292361476404710910
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Submit Page
+    execute-validations: true
+    warn-on-unsaved-changes: Do Not Check
+
+processes: 
+- # ====== Process: Set Theme Style ============================
+  id: 835466419030773358
+  identification: 
+    name: Set Theme Style
+    type: Execute Code
+
+  source: 
+    location: Local Database
+    language: PL/SQL
+    pl/sql-code: |
+      if :P502_DESKTOP_THEME_STYLE_ID is not null then
+          for c1 in (select theme_number
+                     from apex_application_themes
+                     where application_id = :app_id
+                     and ui_type_name   = 'DESKTOP'
+                     and is_current = 'Yes')
+          loop
+              apex_theme.set_current_style (
+                  p_theme_number   => c1.theme_number,
+                  p_id => :P502_DESKTOP_THEME_STYLE_ID
+                  );
+          end loop;
+      end if;
+
+  execution: 
+    sequence: 10
+    point: Processing
+    run-process: Once Per Page Visit (default)
+
+  success-message: 
+    success-message: Theme Style Set for All Users.
+
+  error: 
+    error-message: '#SQLERRM#'
+    display-location: Inline in Notification
+
+  server-side-condition: 
+    when-button-pressed: SAVE # 835464121552773353
+
+branches: 
+- # ====== Branch: Go To Page settings =========================
+  id: 835466943155773359
+  identification: 
+    name: Go To Page settings
+
+  execution: 
+    sequence: 10
+    point: After Processing
+
+  behavior: 
+    type: Page or URL (Redirect)
+    target: 
+      url: 'f?p=&APP_ID.:administration:&SESSION.::&DEBUG.:::&success_msg=#SUCCESS_MSG#'
+      page: ADMINISTRATION
+
+  server-side-condition: 
+    when-button-pressed: SAVE # 835464121552773353
+

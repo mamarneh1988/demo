@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog 
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:n0="http://www.oracle.com/xml/ns/dbchangelog-ext" 
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog 
+	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+	<changeSet id="8436d4e7faf2d13745e895e62dc4af7fe2b9eed3" author="(DEMO)-Generated" failOnError="false"   runOnChange="true" runAlways="false"  >
+		<n0:createOraclePackageSpec objectName="EBA_DEMO_SEARCH_DATA_PKG" objectType="PACKAGE_SPEC" ownerName="DEMO"  replaceIfExists="true" >
+			<n0:source><![CDATA[
+  CREATE OR REPLACE EDITIONABLE PACKAGE "DEMO"."EBA_DEMO_SEARCH_DATA_PKG" authid current_user is
+    procedure clear_data;
+    -- clears all the data in the database tables
+    procedure load_data;
+    -- loads data into the database tables
+    procedure load_product_images(p_app_id in number, p_file_name in varchar2);
+    -- loads images into the eba_demo_search_products table
+    procedure reset_data;
+    -- reset all the data in the database tables
+end eba_demo_search_data_pkg;
+]]></n0:source>
+		</n0:createOraclePackageSpec>
+	</changeSet>
+</databaseChangeLog>

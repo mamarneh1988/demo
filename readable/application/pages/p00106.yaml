@@ -1,0 +1,530 @@
+---
+# ====== Page: Store Details =================================
+id: 106
+identification: 
+  name: Store Details
+  alias: STORE-DETAILS
+  title: Store Details
+
+appearance: 
+  page-mode: Modal Dialog
+  dialog-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+dialog: 
+  chained: true
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Details =====================================
+  id: 2483726336026972973
+  identification: 
+    title: Details
+    type: Cards
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select store_id,
+             store_name,
+             web_address,
+             physical_address
+        from eba_demo_search_stores 
+      where store_id=:P106_STORE_ID;
+    page-items-to-submit: 
+    - P106_STORE_ID
+
+  layout: 
+    sequence: 20
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Cards Container # 3292229738676710823
+    template-options: 
+    - '#DEFAULT#'
+    - t-CardsRegion--styleB
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    id: 2483726395205972974
+    appearance: 
+      layout: Horizontal (Row)
+
+    card: 
+      primary-key-column-1: STORE_ID
+
+    title: 
+      advanced-formatting: false
+      column: STORE_NAME
+
+    subtitle: 
+      advanced-formatting: false
+
+    body: 
+      advanced-formatting: true
+      html-expression: |
+        {if PHYSICAL_ADDRESS/}<p><span class="fa fa-map-marker-o"></span> &PHYSICAL_ADDRESS.</p>{endif/}
+        {if WEB_ADDRESS/}<p><span class="fa fa-globe"></span> &WEB_ADDRESS.</p>{endif/}
+        
+
+    secondary-body: 
+      advanced-formatting: false
+
+    icon-and-badge: 
+      icon-source: Initials
+      icon-column: STORE_NAME
+      icon-position: Start
+
+    media: 
+      advanced-formatting: false
+      source: No Media
+
+    performance: 
+      lazy-loading: false
+
+    pagination: 
+      type: Scroll
+      show-total-row-count: false
+
+- # ====== Region: Store Details ===============================
+  id: 2483727372123972983
+  identification: 
+    title: Store Details
+    type: Form
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select store_id,
+             store_name,
+             web_address,
+             physical_address,
+             latitude,
+             longitude
+        from eba_demo_search_stores 
+      where store_id = :P106_STORE_ID;
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes # 3292222606380710820
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    edit: 
+      enabled: false
+
+- # ====== Region: Location ====================================
+  id: 2484268643583863754
+  identification: 
+    title: Location
+    type: Map
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select store_id,
+             store_name,
+             web_address,
+             physical_address,
+             latitude,
+             longitude
+        from eba_demo_search_stores
+      where store_id = :P106_STORE_ID
+      
+    page-items-to-submit: 
+    - P106_STORE_ID
+
+  layout: 
+    sequence: 30
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard # 3292288565517710863
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    static-id: store-map-region
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  server-side-condition: 
+    type: Item is NOT NULL
+    item: P106_LONGITUDE
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    id: 2484268755146863755
+    map: 
+      background: Default
+      height: 240
+
+    controls: 
+      navigation-bar: Zoom and Compass
+      navigation-bar-position: End
+
+    initial-position-and-zoom: 
+      type: SQL Query
+      sql-query: |
+        select longitude,
+               latitude, 
+               11 zoom 
+          from eba_demo_search_stores 
+        where store_id = :P106_STORE_ID
+      geometry-column-data-type: Longitude/Latitude
+      initial-longitude-column: LONGITUDE
+      initial-latitude-column: LATITUDE
+      initial-zoomlevel-column: ZOOM
+
+    legend: 
+      show: true
+      position: End
+
+    attributes: 
+      messages-position: Below
+      unit-system: Metric
+
+    performance: 
+      lazy-loading: true
+
+    layers: 
+    - # ====== Layer: Map ==========================================
+      id: 2484268791502863756
+      identification: 
+        name: Map
+        layer-type: Points
+
+      layout: 
+        sequence: 10
+
+      source: 
+        location: Region Source
+        use-spatial-index: false
+
+      column-mapping: 
+        geometry-column-data-type: Longitude/Latitude
+        longitude-column: LONGITUDE
+        latitude-column: LATITUDE
+        primary-key-column: STORE_ID
+
+      point-objects: 
+        style: SVG
+        shape: Default
+
+      appearance: 
+        fill-color: '#008000'
+
+      point-clustering: 
+        enable: false
+
+      tooltip: 
+        advanced-formatting: false
+
+      info-window: 
+        advanced-formatting: false
+
+      legend: 
+        show: true
+        enable-to-hide: true
+
+page-items: 
+- # ====== Page Item: P106_STORE_ID ============================
+  id: 2483727536934972985
+  identification: 
+    name: P106_STORE_ID
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 10
+    region: Store Details # 2483727372123972983
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Store Details # 2483727372123972983
+    column: STORE_ID
+    data-type: NUMBER
+    query-only: false
+    primary-key: true
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Checksum Required - Session Level
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P106_STORE_NAME ==========================
+  id: 2483727680467972986
+  identification: 
+    name: P106_STORE_NAME
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 20
+    region: Store Details # 2483727372123972983
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Store Details # 2483727372123972983
+    column: STORE_NAME
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Restricted - May not be set from browser
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P106_WEB_ADDRESS =========================
+  id: 2483727728874972987
+  identification: 
+    name: P106_WEB_ADDRESS
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 30
+    region: Store Details # 2483727372123972983
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Store Details # 2483727372123972983
+    column: WEB_ADDRESS
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Restricted - May not be set from browser
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P106_PHYSICAL_ADDRESS ====================
+  id: 2483727833429972988
+  identification: 
+    name: P106_PHYSICAL_ADDRESS
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 40
+    region: Store Details # 2483727372123972983
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Store Details # 2483727372123972983
+    column: PHYSICAL_ADDRESS
+    data-type: VARCHAR2
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Restricted - May not be set from browser
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P106_LATITUDE ============================
+  id: 2483727894640972989
+  identification: 
+    name: P106_LATITUDE
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 50
+    region: Store Details # 2483727372123972983
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Store Details # 2483727372123972983
+    column: LATITUDE
+    data-type: NUMBER
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Restricted - May not be set from browser
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P106_LONGITUDE ===========================
+  id: 2483728071106972990
+  identification: 
+    name: P106_LONGITUDE
+    type: Hidden
+
+  settings: 
+    value-protected: true
+
+  layout: 
+    sequence: 60
+    region: Store Details # 2483727372123972983
+    position: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    form-region: Store Details # 2483727372123972983
+    column: LONGITUDE
+    data-type: NUMBER
+    query-only: false
+    primary-key: false
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Restricted - May not be set from browser
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+processes: 
+- # ====== Process: Initialize form Store Details ==============
+  id: 2483727411660972984
+  identification: 
+    name: Initialize form Store Details
+    type: Form - Initialization
+    form-region: Store Details # 2483727372123972983
+
+  execution: 
+    sequence: 10
+    point: Before Header
+    run-process: Once Per Page Visit (default)
+

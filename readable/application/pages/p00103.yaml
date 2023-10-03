@@ -1,0 +1,497 @@
+---
+# ====== Page: REST Data Source ==============================
+id: 103
+identification: 
+  name: REST Data Source
+  alias: REST-DATA-SOURCE
+  title: REST Data Source
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+error-handling: 
+  error-handling-function: eba_demo_search_error_handling
+
+regions: 
+- # ====== Region: Search ======================================
+  id: 844608162045377887
+  identification: 
+    title: Search
+    type: Static Content
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard # 3292288565517710863
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--hideHeader
+    - t-Region--noUI
+    - js-headingLevel-2
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Search
+    landmark-label: Movies and Companies
+
+  advanced: 
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  security: 
+    authorization-scheme: MODEL.LOV.NOT_W_ARGUMENT # 836232509777705872
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: Breadcrumb ==================================
+  id: 2482045981204567043
+  identification: 
+    title: Breadcrumb
+    type: Breadcrumb
+
+  source: 
+    breadcrumb: Breadcrumb # 3292185949438710792
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    position: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Title Bar # 3292301028656710870
+    template-options: 
+    - '#DEFAULT#'
+    - t-BreadcrumbRegion--useBreadcrumbTitle
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    appearance: 
+      breadcrumb-template: Breadcrumb # 3292363060641710911
+      template-options: 
+      - '#DEFAULT#'
+
+- # ====== Region: Search Results ==============================
+  id: 2482046505981567043
+  identification: 
+    title: Search Results
+    type: Search
+
+  layout: 
+    sequence: 30
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: false
+    column-span: Automatic
+
+  appearance: 
+    template: Search Results Container # 3292285873630710861
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: false
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  security: 
+    authorization-scheme: MODEL.LOV.NOT_W_ARGUMENT # 836232509777705872
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      search-page-item: P103_SEARCH
+      search-as-you-type: false
+      lazy-loading: true
+      use-pagination: true
+      results-per-page: 15
+      show-result-count: No
+      custom-layout: true
+      result-row-template: |
+        <div class="a-ResultsItem&RESULT_CSS_CLASSES!ATTR.">
+          {if ?ICON_VALUE/}
+            {case ICON_TYPE/}
+              {when INITIALS/}
+                <div class="a-ResultsItem-initials u-color-var">&ICON_VALUE.</div>
+              {when URL/}
+                <div class="a-ResultsItem-image"><img src="https://image.tmdb.org/t/p/w500&ICON_VALUE!ATTR." style="max-width:70px"  alt="&TITLE!ATTR." role="presentation" loading="lazy" /></div>
+              {when CLASS/}
+                <div class="a-ResultsItem-icon u-color-var"><span class="fa &ICON_VALUE!ATTR." aria-hidden="true"></span></div>
+            {endcase/}
+            {else/}
+                <div class="a-ResultsItem-image"><img src="#APP_FILES#image_not_found.png" style="max-width:70px"  alt="&TITLE!ATTR." role="presentation" loading="lazy" /></div>
+          {endif/}
+          <div class="a-ResultsItem-content">
+            <div class="a-ResultsItem-header">
+              {if ?LINK/}
+                <span class="a-ResultsItem-title"><a href="&LINK!ATTR.">&TITLE.</a></span>
+              {else/}
+                <span class="a-ResultsItem-title">&TITLE.</span>
+              {endif/}
+              {if ?BADGE/}<span class="a-ResultsItem-badge" >&BADGE.</span>{endif/}
+            </div>
+            {if ?SUBTITLE/}<div class="a-ResultsItem-subTitle">&SUBTITLE.</div>{endif/}
+            {if ?DESCRIPTION/}<div class="a-ResultsItem-description">&DESCRIPTION.</div>{endif/}
+            {if ?RELEASEDATE/}<div class="a-ResultsItem-misc">Release Date: &RELEASEDATE.</div>{endif/}
+        
+      overall-sort: Title
+      sort-direction: Descending
+      no-query-entered-message: Enter a query to search for movies or companies.
+      no-results-found-message: No movies or companies found.
+
+  search-sources: 
+  - # ====== Search Source: Company Search Configuration =========
+    id: 2482046998907567044
+    identification: 
+      name: Company Search Configuration
+      search-configuration: Company Search Configuration # 3292435022790660244
+      use-as-initial-result: false
+
+    layout: 
+      sequence: 10
+
+    appearance: 
+      maximum-results: 5
+
+  - # ====== Search Source: Movie Search Configuration ===========
+    id: 2482047560039567044
+    identification: 
+      name: Movie Search Configuration
+      search-configuration: Movie Search Configuration # 3292434187072642782
+      use-as-initial-result: false
+
+    layout: 
+      sequence: 20
+
+    appearance: 
+      maximum-results: 5
+
+- # ====== Region: Overview ====================================
+  id: 4140194332118122984
+  identification: 
+    title: Overview
+    type: Static Content
+
+  source: 
+    html-code: |
+      <p>This page demonstrates how to use a <strong>REST Data Source</strong> as the data source for a Search Configuration. The Search Region is configured with two Search Configurations: <strong>Company Search Configuration</strong> (which uses the Companies REST Data Source) and <strong>Movie Search Configuration</strong> (which uses the Movies REST Data Source).</p>
+      <p>To perform a search, simply enter your search term into the search box (e.g., "<strong>Netflix</strong>") and press <em>&crarr;Enter</em>. The search configurations will execute, and all relevant results for companies and movies will be displayed.</p>
+
+  layout: 
+    sequence: 40
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: 4
+
+  appearance: 
+    template: Standard # 3292288565517710863
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  security: 
+    authorization-scheme: MODEL.LOV.NOT_W_ARGUMENT # 836232509777705872
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: Web Credentials not provided ================
+  id: 4482641889850487111
+  identification: 
+    title: Web Credentials not provided
+    type: Static Content
+
+  source: 
+    html-code: This page relies on a REST Data Source. You need to provide your own API key for <strong>themoviedb.org</strong>.
+
+  layout: 
+    sequence: 50
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Alert # 3292217361411710815
+    template-options: 
+    - '#DEFAULT#'
+    - t-Alert--horizontal
+    - t-Alert--defaultIcons
+    - t-Alert--warning
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  security: 
+    authorization-scheme: Web Credentials not provided # 836232509777705872
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+page-items: 
+- # ====== Page Item: P103_SEARCH ==============================
+  id: 2482048035789567045
+  identification: 
+    name: P103_SEARCH
+    type: Text Field
+
+  label: 
+    label: Search
+    alignment: Left
+
+  settings: 
+    subtype: Search
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 10
+    region: Search # 844608162045377887
+    position: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: 0
+
+  appearance: 
+    template: Hidden # 3292358722170710908
+    template-options: 
+    - '#DEFAULT#'
+    - t-Form-fieldContainer--stretchInputs
+    - t-Form-fieldContainer--large
+    icon: fa-search
+    value-placeholder: Enter your search term, e.g. 'Netflix'
+
+  validation: 
+    value-required: false
+
+  advanced: 
+    warn-on-unsaved-changes: Ignore
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+buttons: 
+- # ====== Button: PREV ========================================
+  id: 834332961361666857
+  identification: 
+    button-name: PREV
+    label: Previous
+
+  layout: 
+    sequence: 10
+    region: Breadcrumb # 2482045981204567043
+    position: NEXT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Icon # 3292360794092710909
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    icon: fa-angle-left
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:102:&SESSION.::&DEBUG.:::'
+      page: 102 # Multiple Search Configurations
+
+    warn-on-unsaved-changes: Do Not Check
+
+- # ====== Button: NEXT ========================================
+  id: 834333215435668575
+  identification: 
+    button-name: NEXT
+    label: Next
+
+  layout: 
+    sequence: 20
+    region: Breadcrumb # 2482045981204567043
+    position: NEXT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Icon # 3292360794092710909
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    icon: fa-angle-right
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:200:&SESSION.::&DEBUG.:::'
+      page: 200 # Use Cases
+
+    warn-on-unsaved-changes: Do Not Check
+
+- # ====== Button: PROVIDE_CREDENTIALS =========================
+  id: 836230161135636892
+  identification: 
+    button-name: PROVIDE_CREDENTIALS
+    label: Provide Credentials
+
+  layout: 
+    sequence: 10
+    region: Web Credentials not provided # 4482641889850487111
+    position: NEXT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text # 3292361476404710910
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:503:&SESSION.::&DEBUG.:503::'
+      page: 503 # Web Credentials Settings
+      clear-cache: 503
+
+    warn-on-unsaved-changes: Do Not Check
+

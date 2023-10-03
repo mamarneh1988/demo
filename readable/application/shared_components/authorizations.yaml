@@ -1,0 +1,35 @@
+---
+- # ====== Authorization: Oracle Text is available =============
+  id: 830324093378509760
+  identification: 
+    name: Oracle Text is available
+
+  authorization-scheme: 
+    type: PL/SQL Function Returning Boolean
+
+  settings: 
+    pl/sql-function-body: return eba_demo_search_text_pkg.text_is_available;
+
+  server-cache: 
+    evaluation-point: Once per Session
+
+  error: 
+    error-message: Oracle Text is not available in this workspace.
+
+- # ====== Authorization: Web Credentials not provided =========
+  id: 836232509777705872
+  identification: 
+    name: Web Credentials not provided
+
+  authorization-scheme: 
+    type: NOT Exists SQL Query
+
+  settings: 
+    sql-query: select * from eba_demo_search_web_creds where credential_static_id = 'tmdb_api_key'
+
+  server-cache: 
+    evaluation-point: Once per Page View
+
+  error: 
+    error-message: Required web credentials are not provided.
+

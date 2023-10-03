@@ -1,0 +1,259 @@
+---
+# ====== Page: Home ==========================================
+id: 1
+identification: 
+  name: Home
+  alias: HOME
+  title: Sample Application Search
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Sample Application Search ===================
+  id: 3292397557986710941
+  identification: 
+    title: Sample Application Search
+    type: Static Content
+
+  source: 
+    html-code: Demonstration of Application Search in APEX
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    position: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Hero # 3292255658597710844
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  image: 
+    file-url: '#APP_FILES#icons/app-icon-512.png'
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: About =======================================
+  id: 3297542671575907215
+  identification: 
+    title: About
+    type: Static Content
+
+  source: 
+    html-code: |
+      <p>The <strong>Application Search</strong> feature, introduced in APEX 22.2, provides a seamless search experience that feels like a&nbsp;search engine&nbsp;within your application. It allows users to search for data across multiple&nbsp;data sources, making it easy to find the information they need.</p>
+      <p>With Application Search, you can create multiple&nbsp;search configurations&nbsp;that search a<strong>&nbsp;local data source</strong>, <strong>REST-enabled SQL</strong>, or <strong>REST API</strong>. This allows you to provide a comprehensive&nbsp;search experience&nbsp;for your users, retrieving relevant information from a variety of sources.</p>
+      <p><strong>Search Configurations</strong> contain information about a&nbsp;searchable data source&nbsp;and provide an abstraction over concrete search implementations, allowing for flexibility and future improvements.<br />You can create and manage your Search Configurations under :&nbsp;<em><strong>Shared Components&nbsp;&rarr; Navigation and Search &rarr; Search Configurations</strong></em></p>
+      <p>These Search Configurations give you control over which data appears in the search results and can include links to detailed result pages. This allows users to quickly and easily navigate to the relevant information within your application.</p>
+      <p>One of the key benefits of this new search feature is its ability to use&nbsp;<strong>Oracle Text</strong>, which is a powerful full-text search engine provided by Oracle Database. By leveraging Oracle Text, you can take advantage of its advanced&nbsp;search capabilities, such as&nbsp;keyword searching,&nbsp;fuzzy searching, and stemming, allowing for more accurate and relevant search results. It can handle complex queries, including&nbsp;phrase searching&nbsp;and&nbsp;proximity searching, which can further refine search results.</p>
+      <p>A new region type, <strong>Search Region</strong>, has also been introduced, which can be configured to use one or more Search Configurations and display the search results.</p>
+      <p>To see a demo of this feature in action, you can refer to this video:</p>
+      <p><a href="https://www.youtube.com/watch?v=ZvM9IWil4Xs&amp;ab_channel=OracleAPEX">▶️ Add Search to your APEX Application with Oracle APEX 22.2</a></p>
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: 8
+    column-css-classes: 
+    - col-sm-12
+
+  appearance: 
+    template: Content Block # 3292251026065710841
+    template-options: 
+    - '#DEFAULT#'
+    - t-ContentBlock--h1
+    - js-headingLevel-2
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: App Navigation ==============================
+  id: 3297542772323907216
+  identification: 
+    title: App Navigation
+    type: List
+
+  source: 
+    list: Home # 3298566791098201450
+
+  layout: 
+    sequence: 20
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: 8
+
+  appearance: 
+    template: Standard # 3292288565517710863
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--noPadding
+    - t-Region--removeHeader js-removeLandmark
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    appearance: 
+      list-template: Media List # 3292344535789710898
+      template-options: 
+      - '#DEFAULT#'
+      - t-MediaList--showBadges
+      - t-MediaList--iconsRounded
+
+buttons: 
+- # ====== Button: PREV ========================================
+  id: 823662591622293440
+  identification: 
+    button-name: PREV
+    label: Previous
+
+  layout: 
+    sequence: 10
+    region: Sample Application Search # 3292397557986710941
+    position: NEXT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Icon # 3292360794092710909
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    icon: fa-angle-left
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:1:&SESSION.::&DEBUG.:::'
+      page: 1 # Home
+
+    warn-on-unsaved-changes: Do Not Check
+
+  advanced: 
+    custom-attributes: 
+    - disabled
+
+- # ====== Button: NEXT ========================================
+  id: 823662696932293441
+  identification: 
+    button-name: NEXT
+    label: Next
+
+  layout: 
+    sequence: 20
+    region: Sample Application Search # 3292397557986710941
+    position: NEXT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Icon # 3292360794092710909
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    icon: fa-angle-right
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:100:&SESSION.::&DEBUG.:::'
+      page: 100 # Basics
+
+    warn-on-unsaved-changes: Do Not Check
+

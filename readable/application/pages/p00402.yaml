@@ -1,0 +1,606 @@
+---
+# ====== Page: Text Index Function ===========================
+id: 402
+identification: 
+  name: Text Index Function
+  alias: TEXT-INDEX-FUNCTION
+  title: Text Index Function
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Search ======================================
+  id: 844611589167391154
+  identification: 
+    title: Search
+    type: Static Content
+
+  layout: 
+    sequence: 30
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard # 3292288565517710863
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--hideHeader
+    - t-Region--noUI
+    - js-headingLevel-2
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Search
+    landmark-label: Products
+
+  advanced: 
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  server-side-condition: 
+    type: Rows returned
+    sql-query: |
+      select 1 from user_indexes
+      where index_name='EBA_DEMO_SEARCH_PRODUCTS_CTX'
+
+  security: 
+    authorization-scheme: Oracle Text is available # 830324093378509760
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: Breadcrumb ==================================
+  id: 2481272221415064937
+  identification: 
+    title: Breadcrumb
+    type: Breadcrumb
+
+  source: 
+    breadcrumb: Breadcrumb # 3292185949438710792
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    position: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Title Bar # 3292301028656710870
+    template-options: 
+    - '#DEFAULT#'
+    - t-BreadcrumbRegion--useBreadcrumbTitle
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    appearance: 
+      breadcrumb-template: Breadcrumb # 3292363060641710911
+      template-options: 
+      - '#DEFAULT#'
+
+- # ====== Region: Search Results ==============================
+  id: 2481272841601064938
+  identification: 
+    title: Search Results
+    type: Search
+
+  layout: 
+    sequence: 40
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: false
+    column-span: Automatic
+
+  appearance: 
+    template: Search Results Container # 3292285873630710861
+    template-options: 
+    - t-ResultsRegion--iconMd
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: false
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-side-condition: 
+    type: Rows returned
+    sql-query: |
+      select 1 from user_indexes
+      where index_name='EBA_DEMO_SEARCH_PRODUCTS_CTX'
+
+  security: 
+    authorization-scheme: Oracle Text is available # 830324093378509760
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      search-page-item: P402_SEARCH
+      search-as-you-type: true
+      minimum-characters: No minimum (0)
+      lazy-loading: true
+      use-pagination: true
+      results-per-page: 15
+      show-result-count: No
+      custom-layout: false
+      no-query-entered-message: Enter a query to search for products.
+      no-results-found-message: No products found.
+
+  search-sources: 
+  - # ====== Search Source: Product Search Configuration Oracle Te
+    id: 2481273316802064938
+    identification: 
+      name: Product Search Configuration Oracle Text  Function
+      search-configuration: Product Search Configuration Oracle Text  Function # 2481271228236056849
+      use-as-initial-result: false
+
+    layout: 
+      sequence: 10
+
+- # ====== Region: Oracle Text is not available ================
+  id: 4476758612154505267
+  identification: 
+    title: Oracle Text is not available
+    type: Static Content
+
+  source: 
+    html-code: |
+      <p>Oracle Text is not available in your workspace. Contact your database administrator to get the <strong>CTXAPP</strong> role granted using the following SQL statement.</p>
+      <pre>grant CTXAPP to #OWNER#;</pre>
+      <p>Then log out and back into the application and revisit this page. </p>
+
+  layout: 
+    sequence: 60
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Alert # 3292217361411710815
+    template-options: 
+    - '#DEFAULT#'
+    - t-Alert--horizontal
+    - t-Alert--defaultIcons
+    - t-Alert--warning
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  security: 
+    authorization-scheme: MODEL.LOV.NOT_W_ARGUMENT # 830324093378509760
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: Oracle Text Index does not exist ============
+  id: 4476759580765509068
+  identification: 
+    title: Oracle Text Index does not exist
+    type: Static Content
+
+  source: 
+    html-code: <p>Oracle Text is available in your workspace, but the Full Text index does not exist yet.</p>
+
+  layout: 
+    sequence: 70
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Alert # 3292217361411710815
+    template-options: 
+    - '#DEFAULT#'
+    - t-Alert--horizontal
+    - t-Alert--defaultIcons
+    - t-Alert--info
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  server-side-condition: 
+    type: No Rows returned
+    sql-query: |
+      select 1 from user_indexes
+      where index_name='EBA_DEMO_SEARCH_PRODUCTS_CTX'
+
+  security: 
+    authorization-scheme: Oracle Text is available # 830324093378509760
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: Overview ====================================
+  id: 4968163634980215121
+  identification: 
+    title: Overview
+    type: Static Content
+
+  source: 
+    html-code: |
+      <p>This page demonstrates how to use the <em>Text Index Function</em>, which takes the end user input and returns the Oracle Text query as a result.</p>
+      <p>To configure Oracle Text in <em>Page Designer</em>, navigate to the <em>Shared Components</em> section, select the Search Configuration referenced by the Search region, and click on "<em>Edit Component</em>" to access the configuration settings. In the "<em>Text Index Function</em>" attribute, select the function that will convert the end user's query to Oracle Text query syntax.</p>
+      <p>To perform a search, simply type your query (or use one of the examples below). Your query is automatically translated to Oracle Text query syntax by the <em>EBA_DEMO_SEARCH_TEXT_PKG.CONVERT_TEXT_QUERY</em> function. This function executes <em>exact</em> queries first and adds <em>fuzzy</em> or <em>wildcard</em> features later on when the exact query does not return enough rows.</p>
+      <p>Query Examples:</p>
+      <ul>
+      <li><em>trousers</em></li>
+      <li><em>trosers</em></li>
+      <li><em>sweater</em></li>
+      <li><em>sweter</em></li>
+      </ul>
+
+  layout: 
+    sequence: 50
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: 4
+
+  appearance: 
+    template: Standard # 3292288565517710863
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-side-condition: 
+    type: Rows returned
+    sql-query: |
+      select 1 from user_indexes
+      where index_name='EBA_DEMO_SEARCH_PRODUCTS_CTX'
+
+  security: 
+    authorization-scheme: Oracle Text is available # 830324093378509760
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+page-items: 
+- # ====== Page Item: P402_SEARCH ==============================
+  id: 2481273836859064939
+  identification: 
+    name: P402_SEARCH
+    type: Text Field
+
+  label: 
+    label: Search
+    alignment: Left
+
+  settings: 
+    subtype: Search
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 10
+    region: Search # 844611589167391154
+    position: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: 0
+
+  appearance: 
+    template: Hidden # 3292358722170710908
+    template-options: 
+    - '#DEFAULT#'
+    - t-Form-fieldContainer--stretchInputs
+    - t-Form-fieldContainer--large
+    icon: fa-search
+    value-placeholder: Enter your search term, e.g. 'trosers'
+
+  validation: 
+    value-required: false
+
+  advanced: 
+    warn-on-unsaved-changes: Ignore
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Session (Persistent)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+buttons: 
+- # ====== Button: CREATE_TEXT_INDEX ===========================
+  id: 830347816487658846
+  identification: 
+    button-name: CREATE_TEXT_INDEX
+    label: Create Oracle Text index
+
+  layout: 
+    sequence: 10
+    region: Oracle Text Index does not exist # 4476759580765509068
+    position: NEXT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text # 3292361476404710910
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Submit Page
+    execute-validations: true
+    warn-on-unsaved-changes: Do Not Check
+
+  security: 
+    authorization-scheme: Oracle Text is available # 830324093378509760
+
+- # ====== Button: PREV ========================================
+  id: 834340910299720188
+  identification: 
+    button-name: PREV
+    label: Previous
+
+  layout: 
+    sequence: 20
+    region: Breadcrumb # 2481272221415064937
+    position: NEXT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Icon # 3292360794092710909
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    icon: fa-angle-left
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:401:&SESSION.::&DEBUG.:::'
+      page: 401 # Standard
+
+    warn-on-unsaved-changes: Do Not Check
+
+- # ====== Button: NEXT ========================================
+  id: 834341221031721949
+  identification: 
+    button-name: NEXT
+    label: Next
+
+  layout: 
+    sequence: 30
+    region: Breadcrumb # 2481272221415064937
+    position: NEXT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Icon # 3292360794092710909
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    css-classes: 
+    - disabled
+    icon: fa-angle-right
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:402:&SESSION.::&DEBUG.:::'
+      page: 402 # Text Index Function
+
+    warn-on-unsaved-changes: Do Not Check
+
+  advanced: 
+    custom-attributes: 
+    - disabled
+
+dynamic-actions: 
+- # ====== Dynamic Action: Enter key ===========================
+  id: 840855040200152349
+  identification: 
+    name: Enter key
+
+  execution: 
+    sequence: 10
+
+  when: 
+    event: EVENT.EVENT.BROWSER.KEYPRESS
+    selection-type: Item(s)
+    item(s): 
+    - P402_SEARCH
+
+  client-side-condition: 
+    type: JavaScript expression
+    javascript-expression: |
+      this.browserEvent.keyCode === 13
+      
+
+  execution: 
+    event-scope: Static
+    type: Immediate
+
+  actions: 
+  - # ====== Action: Cancel Event ================================
+    id: 840855418379152349
+    identification: 
+      action: Cancel Event
+
+    execution: 
+      sequence: 10
+      event: Enter key # 840855040200152349
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+processes: 
+- # ====== Process: Create Oracle Text Index ===================
+  id: 830348305043661551
+  identification: 
+    name: Create Oracle Text Index
+    type: Execute Code
+
+  source: 
+    location: Local Database
+    language: PL/SQL
+    pl/sql-code: |
+      begin
+          eba_demo_search_text_pkg.drop_text_preferences;
+          eba_demo_search_text_pkg.create_text_preferences;
+          eba_demo_search_text_pkg.create_text_index;
+      end;
+      
+
+  execution: 
+    sequence: 10
+    point: Processing
+    run-process: Once Per Page Visit (default)
+
+  error: 
+    display-location: Inline in Notification
+
+  security: 
+    authorization-scheme: Oracle Text is available # 830324093378509760
+

@@ -1,0 +1,34 @@
+---
+- # ====== Install Script: install =============================
+  id: 2490125101592600559
+  identification: 
+    name: install
+
+  execution: 
+    sequence: 10
+
+  server-side-condition: 
+    type: Never
+
+- # ====== Install Script: data ================================
+  id: 2490125265607604492
+  identification: 
+    name: data
+
+  execution: 
+    sequence: 20
+
+  server-side-condition: 
+    type: Never
+
+- # ====== Install Script: Oracle TEXT helper package (compiles 
+  id: 2490125566921628997
+  identification: 
+    name: Oracle TEXT helper package (compiles without Oracle Text)
+
+  execution: 
+    sequence: 30
+
+  server-side-condition: 
+    type: Never
+

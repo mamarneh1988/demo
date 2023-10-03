@@ -1,0 +1,564 @@
+---
+# ====== Page: Cards Region ==================================
+id: 301
+identification: 
+  name: Cards Region
+  alias: CARDS-REGION
+  title: Cards Region
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+css: 
+  inline: |
+    /* Setting card icon background to transparent 
+       so that the icon color from the Search Configuration 
+       renders correctly */
+    :root {
+        --a-cv-icon-background-color: transparent;
+    }
+    
+    /* Change card icon size */
+    .a-CardView-icon{
+        font-size: xx-large !important;
+    }
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Search ======================================
+  id: 844610444112385501
+  identification: 
+    title: Search
+    type: Static Content
+
+  layout: 
+    sequence: 20
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard # 3292288565517710863
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--hideHeader
+    - t-Region--noUI
+    - js-headingLevel-2
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Search
+    landmark-label: Products, Stores and Customers
+
+  advanced: 
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+- # ====== Region: Search Results ==============================
+  id: 4928312659395098426
+  identification: 
+    title: Search Results
+    type: Cards
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select config_label,
+             primary_key_1,
+             title,
+             subtitle,
+             description,
+             icon_type,
+             'fa ' || icon_value as icon_value,
+             case config_label 
+                 when 'Store Search Configuration'    then 'Store'
+                 when 'Product Search Configuration'  then 'Product'
+                 when 'Customer Search Configuration' then 'Customer'
+             end tag
+        from table(
+                 apex_search.search(
+                     p_search_static_ids => apex_t_varchar2( 'store', 'product', 'customer' ),
+                     p_search_expression => :P301_SEARCH,
+                     p_apply_order_bys   => 'N') )
+    page-items-to-submit: 
+    - P301_SEARCH
+
+  layout: 
+    sequence: 40
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: false
+    column-span: Automatic
+
+  appearance: 
+    template: Cards Container # 3292229738676710823
+    template-options: 
+    - t-CardsRegion--styleA
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: true
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    id: 2480407556014340969
+    appearance: 
+      layout: Grid
+      grid-columns: Auto
+
+    card: 
+      primary-key-column-1: PRIMARY_KEY_1
+
+    title: 
+      advanced-formatting: false
+      column: TITLE
+
+    subtitle: 
+      advanced-formatting: false
+      column: SUBTITLE
+
+    body: 
+      advanced-formatting: false
+      column: DESCRIPTION
+
+    secondary-body: 
+      advanced-formatting: false
+
+    icon-and-badge: 
+      icon-source: Icon Class Column
+      icon-column: ICON_VALUE
+      icon-position: Start
+      badge-column: TAG
+
+    media: 
+      advanced-formatting: false
+      source: No Media
+
+    performance: 
+      lazy-loading: false
+
+    pagination: 
+      type: Scroll
+      show-total-row-count: false
+
+    messages: 
+      when-no-data-found: No customers, products or stores found.
+
+    actions: 
+    - # ====== Action: BUTTON ======================================
+      id: 2477840924785316180
+      identification: 
+        type: Button
+        label: Edit
+
+      layout: 
+        position: Primary
+        sequence: 10
+
+      link: 
+        type: Redirect to Page in this Application
+        target: 
+          url: 'f?p=&APP_ID.:304:&SESSION.::&DEBUG.:304:P304_CONFIG,P304_STORE_ID,P304_CUSTOMER_ID,P304_PRODUCT_ID:&CONFIG_LABEL.,&PRIMARY_KEY_1.,&PRIMARY_KEY_1.,&PRIMARY_KEY_1.'
+          page: 304 # Card Region Details
+          clear-cache: 304
+          values: 
+            p304_config: '&CONFIG_LABEL.'
+            p304_store_id: '&PRIMARY_KEY_1.'
+            p304_customer_id: '&PRIMARY_KEY_1.'
+            p304_product_id: '&PRIMARY_KEY_1.'
+
+      appearance: 
+        display-type: Text with Icon
+        icon: fa-edit
+        hot: true
+
+- # ====== Region: Breadcrumb ==================================
+  id: 4928616571499144807
+  identification: 
+    title: Breadcrumb
+    type: Breadcrumb
+
+  source: 
+    breadcrumb: Breadcrumb # 3292185949438710792
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    position: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Title Bar # 3292301028656710870
+    template-options: 
+    - '#DEFAULT#'
+    - t-BreadcrumbRegion--useBreadcrumbTitle
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    appearance: 
+      breadcrumb-template: Breadcrumb # 3292363060641710911
+      template-options: 
+      - '#DEFAULT#'
+
+- # ====== Region: Overview ====================================
+  id: 4968162508103207086
+  identification: 
+    title: Overview
+    type: Static Content
+
+  source: 
+    html-code: |
+      <p>This page shows you how to use the <em>Cards region</em> to display search results.</p>
+      <p>You can use the <code>search</code> function to connect the Cards region to the Search Configuration to programmatically retrieve search results.</p>
+      <p>This example uses the following <code>search</code> function:</p>
+      <pre style="max-width: 100%; overflow: auto">apex_search.search (
+            p_search_static_ids      in apex_t_varchar2,
+            p_search_expression      in varchar2,
+            p_apply_order_bys        in varchar2           default 'Y',
+            --
+            p_return_total_row_count in varchar2           default 'N' )
+            return apex_search_result_table pipelined;
+      </pre>
+      <p>The <code>search</code> function requires the specification of search configurations to be used for the search, along with the search query. It returns relevant search results which can then be rendered on components such as the Cards region.</p>
+      <p>To test the functionality, type a search query (such as "<strong>red</strong>") and all relevant results from the <em>Customer search configuration</em>, <em>Store search configuration</em>, and <em>Product search configuration</em> will be displayed in the Cards region.</p>
+
+  layout: 
+    sequence: 50
+    parent-region: No Parent
+    position: BODY
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: 4
+
+  appearance: 
+    template: Standard # 3292288565517710863
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      output-as: HTML
+      expand-shortcuts: false
+
+page-items: 
+- # ====== Page Item: P301_SEARCH ==============================
+  id: 2480408327536340971
+  identification: 
+    name: P301_SEARCH
+    type: Text Field
+
+  label: 
+    label: Search
+    alignment: Left
+
+  settings: 
+    subtype: Search
+    trim-spaces: Leading and Trailing
+    text-case: NO CHANGE
+    submit-when-enter-pressed: false
+    disabled: false
+
+  layout: 
+    sequence: 10
+    region: Search # 844610444112385501
+    position: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: 0
+
+  appearance: 
+    template: Hidden # 3292358722170710908
+    template-options: 
+    - '#DEFAULT#'
+    - t-Form-fieldContainer--stretchInputs
+    - t-Form-fieldContainer--large
+    icon: fa-search
+    value-placeholder: Enter your search term, e.g. 'red'
+
+  validation: 
+    value-required: false
+
+  advanced: 
+    warn-on-unsaved-changes: Ignore
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+buttons: 
+- # ====== Button: PREV ========================================
+  id: 834337772758700170
+  identification: 
+    button-name: PREV
+    label: Previous
+
+  layout: 
+    sequence: 10
+    region: Breadcrumb # 4928616571499144807
+    position: NEXT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Icon # 3292360794092710909
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    icon: fa-angle-left
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:300:&SESSION.::&DEBUG.:::'
+      page: 300 # Advanced
+
+    warn-on-unsaved-changes: Do Not Check
+
+- # ====== Button: NEXT ========================================
+  id: 834338077731701913
+  identification: 
+    button-name: NEXT
+    label: Next
+
+  layout: 
+    sequence: 20
+    region: Breadcrumb # 4928616571499144807
+    position: NEXT
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Icon # 3292360794092710909
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    icon: fa-angle-right
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:302:&SESSION.::&DEBUG.:::'
+      page: 302 # Map Region
+
+    warn-on-unsaved-changes: Do Not Check
+
+dynamic-actions: 
+- # ====== Dynamic Action: Enter key ===========================
+  id: 823661671988293431
+  identification: 
+    name: Enter key
+
+  execution: 
+    sequence: 30
+
+  when: 
+    event: EVENT.EVENT.BROWSER.KEYPRESS
+    selection-type: Item(s)
+    item(s): 
+    - P301_SEARCH
+
+  client-side-condition: 
+    type: JavaScript expression
+    javascript-expression: |
+      this.browserEvent.keyCode === 13
+      
+
+  execution: 
+    event-scope: Static
+    type: Immediate
+
+  actions: 
+  - # ====== Action: Cancel Event ================================
+    id: 823661725698293432
+    identification: 
+      action: Cancel Event
+
+    execution: 
+      sequence: 10
+      event: Enter key # 823661671988293431
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+- # ====== Dynamic Action: Dialog Closed =======================
+  id: 2477841028892316181
+  identification: 
+    name: Dialog Closed
+
+  execution: 
+    sequence: 20
+
+  when: 
+    event: EVENT.EVENT.FAMEWORK.APEXAFTERCLOSEDIALOG
+    selection-type: Region
+    region: Search Results # 4928312659395098426
+
+  execution: 
+    event-scope: Static
+    type: Immediate
+
+  actions: 
+  - # ====== Action: Refresh =====================================
+    id: 2477841088799316182
+    identification: 
+      action: Refresh
+
+    affected-elements: 
+      selection-type: Region
+      region: Search Results # 4928312659395098426
+
+    execution: 
+      sequence: 10
+      event: Dialog Closed # 2477841028892316181
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+- # ====== Dynamic Action: search ==============================
+  id: 2480409365263340972
+  identification: 
+    name: search
+
+  execution: 
+    sequence: 10
+
+  when: 
+    event: EVENT.EVENT.BROWSER.KEYUP
+    selection-type: Item(s)
+    item(s): 
+    - P301_SEARCH
+
+  execution: 
+    event-scope: Static
+    type: Throttle
+    time: 500
+    immediate: false
+
+  actions: 
+  - # ====== Action: Refresh =====================================
+    id: 2480409803795340972
+    identification: 
+      action: Refresh
+
+    affected-elements: 
+      selection-type: Region
+      region: Search Results # 4928312659395098426
+
+    execution: 
+      sequence: 10
+      event: search # 2480409365263340972
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+

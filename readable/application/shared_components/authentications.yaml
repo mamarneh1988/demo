@@ -1,0 +1,22 @@
+---
+- # ====== Authentication: Oracle APEX Accounts ================
+  id: 3292185646772710792
+  identification: 
+    name: Oracle APEX Accounts
+
+  settings: 
+    type: Oracle APEX Accounts
+
+  session-not-valid: 
+    redirect-to: Login Page
+
+  login-processing: 
+    switch-in-session: false
+
+  session-sharing: 
+    cookie-name: ORA_WWV_PACKAGED_APPLICATIONS
+    secure: true
+
+  real-application-security: 
+    ras-mode: Disabled
+

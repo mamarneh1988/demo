@@ -1,0 +1,1232 @@
+---
+- # ====== List: Administration ================================
+  id: 835455883724739219
+  identification: 
+    name: Administration
+    type: Static Values
+
+  entries: 
+  - # ====== Entry: Manage Sample Data ===========================
+    id: 835456020794739220
+    label: 
+      label: Manage Sample Data
+
+    icon: 
+      image/icon-css-classes: fa-database
+
+    layout: 
+      sequence: 10
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:501:&SESSION.::&DEBUG.::::'
+        page: 501 # Manage Sample Data
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: true
+      1.: This application ships with sample data. You can reset the sample data using this administrative page.
+
+  - # ====== Entry: Theme Style ==================================
+    id: 835456447911739221
+    label: 
+      label: Theme Style
+
+    icon: 
+      image/icon-css-classes: fa-design
+
+    layout: 
+      sequence: 20
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:502:&SESSION.::&DEBUG.::::'
+        page: 502 # Application Theme Style
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: true
+      1.: Set application user interface theme style for all users.
+
+  - # ====== Entry: Manage Web Credentials =======================
+    id: 835456821068739221
+    label: 
+      label: Manage Web Credentials
+
+    icon: 
+      image/icon-css-classes: fa-key
+
+    layout: 
+      sequence: 30
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:503:&SESSION.::&DEBUG.::::'
+        page: 503 # Web Credentials Settings
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: true
+      1.: The REST Data Source page in the Basics section rely on REST Data Sources. Use this page to provide your own TMDb API key.
+
+- # ====== List: Oracle Text ===================================
+  id: 2488316896525350755
+  identification: 
+    name: Oracle Text
+    type: Static Values
+
+  entries: 
+  - # ====== Entry: Standard =====================================
+    id: 2488317179016350756
+    label: 
+      label: Standard
+
+    icon: 
+      image/icon-css-classes: fa-server-search
+
+    layout: 
+      sequence: 10
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:401:&SESSION.::&DEBUG.::::'
+        page: 401 # Standard
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: true
+      1.: Demonstrates how to create Search Configurations based on Oracle Text.
+
+  - # ====== Entry: Text Index Function ==========================
+    id: 2488317549266350756
+    label: 
+      label: Text Index Function
+
+    icon: 
+      image/icon-css-classes: fa-function
+
+    layout: 
+      sequence: 20
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:402:&SESSION.::&DEBUG.::::'
+        page: 402 # Text Index Function
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: true
+      1.: Demonstrates how to Text Index Function to translate user queries to complex Oracle text syntax.
+
+- # ====== List: Navigation Menu ===============================
+  id: 3292186413923710794
+  identification: 
+    name: Navigation Menu
+    type: Static Values
+
+  entries: 
+  - # ====== Entry: test =========================================
+    id: 847520246944857593
+    label: 
+      label: test
+
+    icon: 
+      image/icon-css-classes: fa-file-o
+
+    layout: 
+      sequence: 280
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 2
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:2:&APP_SESSION.::&DEBUG.:::'
+        page: 2 # test
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: test =========================================
+    id: 845920047755566687
+    label: 
+      label: test
+
+    icon: 
+      image/icon-css-classes: fa-file-o
+
+    layout: 
+      sequence: 290
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 3
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:3:&APP_SESSION.::&DEBUG.:::'
+        page: 3 # test
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Administration ===============================
+    id: 835452617171726715
+    label: 
+      label: Administration
+
+    icon: 
+      image/icon-css-classes: fa-gear
+
+    layout: 
+      sequence: 270
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 500
+      - 501
+      - 502
+      - 503
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:500:&SESSION.::&DEBUG.::::'
+        page: 500 # Administration
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Advanced =====================================
+    id: 2480337040836250994
+    label: 
+      label: Advanced
+
+    icon: 
+      image/icon-css-classes: fa-rocket
+
+    layout: 
+      sequence: 120
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 300
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:300:&SESSION.::&DEBUG.::::'
+        page: 300 # Advanced
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Oracle Text ==================================
+    id: 2480340465409255584
+    label: 
+      label: Oracle Text
+
+    icon: 
+      image/icon-css-classes: fa-server-search
+
+    layout: 
+      sequence: 130
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 400
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:400:&SESSION.::&DEBUG.::::'
+        page: 400 # Oracle Text
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Single Search Configuration ==================
+    id: 2480342661856264138
+    label: 
+      label: Single Search Configuration
+
+    layout: 
+      sequence: 140
+      parent-entry: Basics # 3292407301148026276
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 101
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:101:&SESSION.::&DEBUG.::::'
+        page: 101 # Single Search Configuration
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Multiple Search Configurations ===============
+    id: 2480346643905270727
+    label: 
+      label: Multiple Search Configurations
+
+    layout: 
+      sequence: 150
+      parent-entry: Basics # 3292407301148026276
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 102
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:102:&SESSION.::&DEBUG.::::'
+        page: 102 # Multiple Search Configurations
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Search Query Prefix ==========================
+    id: 2480355679127280942
+    label: 
+      label: Search Query Prefix
+
+    layout: 
+      sequence: 170
+      parent-entry: Use Cases # 3292441401695145911
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 201
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:201:&APP_SESSION.::&DEBUG.:::'
+        page: 201 # Search Query Prefix
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Custom Result Row Template ===================
+    id: 2480373150580311159
+    label: 
+      label: Custom Result Row Template
+
+    layout: 
+      sequence: 180
+      parent-entry: Use Cases # 3292441401695145911
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 204
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:204:&SESSION.::&DEBUG.::::'
+        page: 204 # Custom Result Row Template
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Filter Search Configurations =================
+    id: 2480393413700328395
+    label: 
+      label: Filter Search Configurations
+
+    layout: 
+      sequence: 190
+      parent-entry: Use Cases # 3292441401695145911
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 206
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:206:&APP_SESSION.::&DEBUG.:::'
+        page: 206 # Filter Search Configurations
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Multiple Search Regions ======================
+    id: 2480400239223333848
+    label: 
+      label: Multiple Search Regions
+
+    layout: 
+      sequence: 200
+      parent-entry: Use Cases # 3292441401695145911
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 207
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:207:&SESSION.::&DEBUG.::::'
+        page: 207 # Multiple Search Regions
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Cards Region =================================
+    id: 2480406856233340968
+    label: 
+      label: Cards Region
+
+    layout: 
+      sequence: 210
+      parent-entry: Advanced # 2480337040836250994
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 301
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:301:&APP_SESSION.::&DEBUG.:::'
+        page: 301 # Cards Region
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Map Region ===================================
+    id: 2480411758912346235
+    label: 
+      label: Map Region
+
+    layout: 
+      sequence: 220
+      parent-entry: Advanced # 2480337040836250994
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 302
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:302:&APP_SESSION.::&DEBUG.:::'
+        page: 302 # Map Region
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Highlight Results ============================
+    id: 2480420664344351050
+    label: 
+      label: Highlight Results
+
+    layout: 
+      sequence: 230
+      parent-entry: Advanced # 2480337040836250994
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 303
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:303:&APP_SESSION.::&DEBUG.:::'
+        page: 303 # Highlight Results
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Link Search Result To Form ===================
+    id: 2480425608053360961
+    label: 
+      label: Link Search Result To Form
+
+    layout: 
+      sequence: 175
+      parent-entry: Use Cases # 3292441401695145911
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:202:&SESSION.::&DEBUG.::::'
+        page: 202 # Link Search Result to Form
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Standard =====================================
+    id: 2481268542432033633
+    label: 
+      label: Standard
+
+    layout: 
+      sequence: 240
+      parent-entry: Oracle Text # 2480340465409255584
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 401
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:401:&APP_SESSION.::&DEBUG.:::'
+        page: 401 # Standard
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Text Index Function ==========================
+    id: 2481271782532064937
+    label: 
+      label: Text Index Function
+
+    layout: 
+      sequence: 250
+      parent-entry: Oracle Text # 2480340465409255584
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 402
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:402:&APP_SESSION.::&DEBUG.:::'
+        page: 402 # Text Index Function
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: REST Data Source =============================
+    id: 2482045474653567042
+    label: 
+      label: REST Data Source
+
+    layout: 
+      sequence: 260
+      parent-entry: Basics # 3292407301148026276
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 103
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:103:&APP_SESSION.::&DEBUG.:::'
+        page: 103 # REST Data Source
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Home =========================================
+    id: 3292396629088710940
+    label: 
+      label: Home
+
+    icon: 
+      image/icon-css-classes: fa-home
+
+    layout: 
+      sequence: 10
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:1:&APP_SESSION.::&DEBUG.:::'
+        page: 1 # Home
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Basics =======================================
+    id: 3292407301148026276
+    label: 
+      label: Basics
+
+    icon: 
+      image/icon-css-classes: fa-layers
+
+    layout: 
+      sequence: 20
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:100:&SESSION.::&DEBUG.::::'
+        page: 100 # Basics
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Use Cases ====================================
+    id: 3292441401695145911
+    label: 
+      label: Use Cases
+
+    icon: 
+      image/icon-css-classes: fa-puzzle-piece
+
+    layout: 
+      sequence: 60
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:200:&SESSION.::&DEBUG.::::'
+        page: 200 # Use Cases
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+- # ====== List: Navigation Bar ================================
+  id: 3292386691476710927
+  identification: 
+    name: Navigation Bar
+    type: Static Values
+
+  entries: 
+  - # ====== Entry:  Administration ==============================
+    id: 837461426949499648
+    label: 
+      label: ' Administration'
+
+    icon: 
+      image/icon-css-classes: fa-gear
+
+    layout: 
+      sequence: 5
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:500:&SESSION.::&DEBUG.::::'
+        page: 500 # Administration
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Help =========================================
+    id: 846429862051308119
+    label: 
+      label: Help
+
+    icon: 
+      image/icon-css-classes: fa-question-circle-o
+
+    layout: 
+      sequence: 10
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:600:&SESSION.::&DEBUG.::::'
+        page: 600 # Help
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: &APP_USER. ===================================
+    id: 3292398126833710942
+    label: 
+      label: '&APP_USER.'
+
+    icon: 
+      image/icon-css-classes: fa-user
+
+    layout: 
+      sequence: 15
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: '#'
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+      2.: has-username
+
+  - # ====== Entry: --- ==========================================
+    id: 3292398630730710942
+    label: 
+      label: '---'
+
+    layout: 
+      sequence: 20
+      parent-entry: '&APP_USER.' # 3292398126833710942
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: separator
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+  - # ====== Entry: Sign Out =====================================
+    id: 3292399027731710943
+    label: 
+      label: Sign Out
+
+    icon: 
+      image/icon-css-classes: fa-sign-out
+
+    layout: 
+      sequence: 30
+      parent-entry: '&APP_USER.' # 3292398126833710942
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: '&LOGOUT_URL.'
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
+- # ====== List: Home ==========================================
+  id: 3298566791098201450
+  identification: 
+    name: Home
+    type: Static Values
+
+  entries: 
+  - # ====== Entry: Oracle Text ==================================
+    id: 2480441152047623020
+    label: 
+      label: Oracle Text
+
+    icon: 
+      image/icon-css-classes: fa-server-search
+
+    layout: 
+      sequence: 40
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:400:&SESSION.::&DEBUG.::::'
+        page: 400 # Oracle Text
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: true
+      1.: 'Leverage to Oracle Text advanced searching capabilities: Keyword searching, Fuzzy search and much more.'
+
+  - # ====== Entry: Basics =======================================
+    id: 3298566970557201451
+    label: 
+      label: Basics
+
+    icon: 
+      image/icon-css-classes: fa-layers
+
+    layout: 
+      sequence: 10
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:100:&SESSION.::&DEBUG.::::'
+        page: 100 # Basics
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: true
+      1.: Create Search Configurations based on Local data source, REST Enabled SQL Service, REST Data Source ... And integrate it with Search regions.
+
+  - # ====== Entry: Use Cases ====================================
+    id: 3298567352521201452
+    label: 
+      label: Use Cases
+
+    icon: 
+      image/icon-css-classes: fa-puzzle-piece
+
+    layout: 
+      sequence: 20
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:200:&SESSION.::&DEBUG.::::'
+        page: 200 # Use Cases
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: true
+      1.: 'Explore different use case of the Search Configuration: prefix searching, link search result to from ...'
+
+  - # ====== Entry: Advanced =====================================
+    id: 3298567671465201452
+    label: 
+      label: Advanced
+
+    icon: 
+      image/icon-css-classes: fa-rocket
+
+    layout: 
+      sequence: 30
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:300:&SESSION.::&DEBUG.::::'
+        page: 300 # Advanced
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: true
+      1.: 'Explore advanced Application Search variations: Highlight search results, Integrate your Search Configurations with APEX regions like Maps, Cards ...'
+
+- # ====== List: Basics ========================================
+  id: 3298574186206510074
+  identification: 
+    name: Basics
+    type: Static Values
+
+  entries: 
+  - # ====== Entry: Single Search Configuration ==================
+    id: 3298574372067510074
+    label: 
+      label: Single Search Configuration
+
+    icon: 
+      image/icon-css-classes: fa-cube
+
+    layout: 
+      sequence: 10
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:101:&SESSION.::&DEBUG.::::'
+        page: 101 # Single Search Configuration
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: true
+      1.: Demonstrates how to create Search Configurations based on Local Data Source.
+
+  - # ====== Entry: Multiple Search Configurations ===============
+    id: 3298574763348510075
+    label: 
+      label: Multiple Search Configurations
+
+    icon: 
+      image/icon-css-classes: fa-cubes
+
+    layout: 
+      sequence: 20
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:102:&SESSION.::&DEBUG.::::'
+        page: 102 # Multiple Search Configurations
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: true
+      1.: Demonstrates how to use Search region to create searches on multiples Data Sources.
+
+  - # ====== Entry: REST Data Source =============================
+    id: 3298575181242510075
+    label: 
+      label: REST Data Source
+
+    icon: 
+      image/icon-css-classes: fa-cloud
+
+    layout: 
+      sequence: 30
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:103:&SESSION.::&DEBUG.::::'
+        page: 103 # REST Data Source
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: true
+      1.: Demonstrates how to create Search Configurations based on REST Data Source.
+
+- # ====== List: Use Cases =====================================
+  id: 3298575633776519520
+  identification: 
+    name: Use Cases
+    type: Static Values
+
+  entries: 
+  - # ====== Entry: Filter Search Configurations =================
+    id: 2488316268093336763
+    label: 
+      label: Filter Search Configurations
+
+    icon: 
+      image/icon-css-classes: fa-filter
+
+    layout: 
+      sequence: 40
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:206:&SESSION.::&DEBUG.::::'
+        page: 206 # Filter Search Configurations
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: true
+      1.: Demonstrates how to add filters to search page to refine search results.
+
+  - # ====== Entry: Search Query Prefix ==========================
+    id: 3298575808395519521
+    label: 
+      label: Search Query Prefix
+
+    icon: 
+      image/icon-css-classes: fa-tag
+
+    layout: 
+      sequence: 10
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:201:&SESSION.::&DEBUG.::::'
+        page: 201 # Search Query Prefix
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: true
+      1.: Demonstrates how to use Search Query Prefix to perform targeted searches when using multiple search configurations.
+
+  - # ====== Entry: Link Search Result To Form ===================
+    id: 3298576172590519521
+    label: 
+      label: Link Search Result To Form
+
+    icon: 
+      image/icon-css-classes: fa-external-link
+
+    layout: 
+      sequence: 20
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:202:&SESSION.::&DEBUG.::::'
+        page: 202 # Link Search Result to Form
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: true
+      1.: Demonstrates how to link form to search result row.
+
+  - # ====== Entry: Custom Search Result Template ================
+    id: 3298576653124519521
+    label: 
+      label: Custom Search Result Template
+
+    icon: 
+      image/icon-css-classes: fa-design
+
+    layout: 
+      sequence: 30
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:204:&SESSION.::&DEBUG.::::'
+        page: 204 # Custom Result Row Template
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: true
+      1.: 'Demonstrates how to customize the default search results display template. '
+
+  - # ====== Entry: Multiple Search Regions ======================
+    id: 3298577391853519522
+    label: 
+      label: Multiple Search Regions
+
+    icon: 
+      image/icon-css-classes: fa-layout-2col
+
+    layout: 
+      sequence: 50
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:207:&SESSION.::&DEBUG.::::'
+        page: 207 # Multiple Search Regions
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: true
+      1.: Demonstrates how to add multiple Search regions to a single page.
+
+- # ====== List: Advanced ======================================
+  id: 3298577772396524881
+  identification: 
+    name: Advanced
+    type: Static Values
+
+  entries: 
+  - # ====== Entry: Cards Region =================================
+    id: 3298578026429524881
+    label: 
+      label: Cards Region
+
+    icon: 
+      image/icon-css-classes: fa-cards
+
+    layout: 
+      sequence: 10
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:301:&SESSION.::&DEBUG.::::'
+        page: 301 # Cards Region
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: true
+      1.: Demonstrates how to integrate Search Configurations with native APEX Cards regions.
+
+  - # ====== Entry: Map Regions ==================================
+    id: 3298578441037524881
+    label: 
+      label: Map Regions
+
+    icon: 
+      image/icon-css-classes: fa-map-marker-o
+
+    layout: 
+      sequence: 20
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:302:&SESSION.::&DEBUG.::::'
+        page: 302 # Map Region
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: true
+      1.: Demonstrates how to integrate Search Configurations with Map regions.
+
+  - # ====== Entry: Highlight Results ============================
+    id: 3298578806978524882
+    label: 
+      label: Highlight Results
+
+    icon: 
+      image/icon-css-classes: fa-underline
+
+    layout: 
+      sequence: 30
+
+    is-current: 
+      type: Target Page
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:303:&SESSION.::&DEBUG.::::'
+        page: 303 # Highlight Results
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: true
+      1.: Demonstrates how to perform search on Search configurations and highlight search terms in search results.
+

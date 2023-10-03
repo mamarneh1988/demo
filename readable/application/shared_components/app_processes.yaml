@@ -1,0 +1,23 @@
+---
+- # ====== Application Process: Load Products Images ===========
+  id: 833598216202084578
+  identification: 
+    name: Load Products Images
+    type: NATIVE_PLSQL
+
+  source: 
+    location: Local Database
+    language: PL/SQL
+    pl/sql-code: |
+      begin
+          eba_demo_search_data_pkg.load_product_images(:APP_ID,'product_images.zip');
+      end;
+
+  execution: 
+    sequence: 1
+    point: New Session
+
+  server-side-condition: 
+    type: No Rows returned
+    sql-query: select * from eba_demo_search_products where product_image is not null
+

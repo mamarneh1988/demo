@@ -1,0 +1,1240 @@
+---
+- # ====== REST Data Source: Movie Details =====================
+  id: 2483678588592569500
+  identification: 
+    name: Movie Details
+    type: HTTP
+
+  source: 
+    remote-server: api-themoviedb-org-3 # 809313303198541777
+    url-path-prefix: movie/{movie_id}
+
+  settings: 
+    pagination-type: NO PAGINATION
+
+  authentication: 
+    credentials: TMDb API Key # 832934514656382544
+
+  synchronization: 
+    job-is-active: false
+    local-table-owner: Parsing Schema
+
+  advanced: 
+    static-id: Movie_Details
+    pass-ecid: true
+
+  parameters: 
+  - # ====== Parameter: movie_id =================================
+    id: 2483679241110569500
+    identification: 
+      name: movie_id
+
+    value: 
+      type: URL Pattern variable
+      direction: In
+      static: false
+      value: 503
+      required: false
+
+    advanced: 
+      use-for-row-search: false
+
+  data-profiles: 
+    id: 2483672126917569496
+    identification: 
+      name: Movie Details
+
+    data-profile: 
+      format: JSON
+      contains-single-row: false
+
+    advanced: 
+      encoding: Database Character Set
+
+    columns: 
+    - # ====== Column: ID ==========================================
+      id: 2483672353709569496
+      identification: 
+        column-name: ID
+
+      source: 
+        type: Data
+        data-type: NUMBER
+        primary-key: false
+
+      parsing: 
+        path-expression: id
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 1
+        hidden: false
+
+    - # ====== Column: ADULT =======================================
+      id: 2483672608500569496
+      identification: 
+        column-name: ADULT
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 4000
+        primary-key: false
+
+      parsing: 
+        path-expression: adult
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 2
+        hidden: false
+
+    - # ====== Column: TITLE =======================================
+      id: 2483672892263569496
+      identification: 
+        column-name: TITLE
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 4000
+        primary-key: false
+
+      parsing: 
+        path-expression: title
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 3
+        hidden: false
+
+    - # ====== Column: VIDEO =======================================
+      id: 2483673249546569497
+      identification: 
+        column-name: VIDEO
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 4000
+        primary-key: false
+
+      parsing: 
+        path-expression: video
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 4
+        hidden: false
+
+    - # ====== Column: BUDGET ======================================
+      id: 2483673504692569497
+      identification: 
+        column-name: BUDGET
+
+      source: 
+        type: Data
+        data-type: NUMBER
+        primary-key: false
+
+      parsing: 
+        path-expression: budget
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 5
+        hidden: false
+
+    - # ====== Column: STATUS ======================================
+      id: 2483673875709569497
+      identification: 
+        column-name: STATUS
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 4000
+        primary-key: false
+
+      parsing: 
+        path-expression: status
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 6
+        hidden: false
+
+    - # ====== Column: IMDB_ID =====================================
+      id: 2483674088832569497
+      identification: 
+        column-name: IMDB_ID
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 4000
+        primary-key: false
+
+      parsing: 
+        path-expression: imdb_id
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 7
+        hidden: false
+
+    - # ====== Column: REVENUE =====================================
+      id: 2483674447238569497
+      identification: 
+        column-name: REVENUE
+
+      source: 
+        type: Data
+        data-type: NUMBER
+        primary-key: false
+
+      parsing: 
+        path-expression: revenue
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 8
+        hidden: false
+
+    - # ====== Column: RUNTIME =====================================
+      id: 2483674753614569497
+      identification: 
+        column-name: RUNTIME
+
+      source: 
+        type: Data
+        data-type: NUMBER
+        primary-key: false
+
+      parsing: 
+        path-expression: runtime
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 9
+        hidden: false
+
+    - # ====== Column: TAGLINE =====================================
+      id: 2483675054148569498
+      identification: 
+        column-name: TAGLINE
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 4000
+        primary-key: false
+
+      parsing: 
+        path-expression: tagline
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 10
+        hidden: false
+
+    - # ====== Column: HOMEPAGE ====================================
+      id: 2483675370315569498
+      identification: 
+        column-name: HOMEPAGE
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 4000
+        primary-key: false
+
+      parsing: 
+        path-expression: homepage
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 11
+        hidden: false
+
+    - # ====== Column: OVERVIEW ====================================
+      id: 2483675674414569498
+      identification: 
+        column-name: OVERVIEW
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 4000
+        primary-key: false
+
+      parsing: 
+        path-expression: overview
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 12
+        hidden: false
+
+    - # ====== Column: POPULARITY ==================================
+      id: 2483675891264569498
+      identification: 
+        column-name: POPULARITY
+
+      source: 
+        type: Data
+        data-type: NUMBER
+        primary-key: false
+
+      parsing: 
+        path-expression: popularity
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 13
+        hidden: false
+
+    - # ====== Column: VOTE_COUNT ==================================
+      id: 2483676238538569498
+      identification: 
+        column-name: VOTE_COUNT
+
+      source: 
+        type: Data
+        data-type: NUMBER
+        primary-key: false
+
+      parsing: 
+        path-expression: vote_count
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 14
+        hidden: false
+
+    - # ====== Column: POSTER_PATH =================================
+      id: 2483676536091569498
+      identification: 
+        column-name: POSTER_PATH
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 4000
+        primary-key: false
+
+      parsing: 
+        path-expression: poster_path
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 15
+        hidden: false
+
+    - # ====== Column: RELEASE_DATE ================================
+      id: 2483676786721569499
+      identification: 
+        column-name: RELEASE_DATE
+
+      source: 
+        type: Data
+        data-type: DATE
+        primary-key: false
+
+      parsing: 
+        path-expression: release_date
+        format-mask: YYYY"-"MM"-"DD
+        has-time-zone: false
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 16
+        hidden: false
+
+    - # ====== Column: VOTE_AVERAGE ================================
+      id: 2483677105452569499
+      identification: 
+        column-name: VOTE_AVERAGE
+
+      source: 
+        type: Data
+        data-type: NUMBER
+        primary-key: false
+
+      parsing: 
+        path-expression: vote_average
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 17
+        hidden: false
+
+    - # ====== Column: BACKDROP_PATH ===============================
+      id: 2483677445539569499
+      identification: 
+        column-name: BACKDROP_PATH
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 4000
+        primary-key: false
+
+      parsing: 
+        path-expression: backdrop_path
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 18
+        hidden: false
+
+    - # ====== Column: ORIGINAL_TITLE ==============================
+      id: 2483677761552569499
+      identification: 
+        column-name: ORIGINAL_TITLE
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 4000
+        primary-key: false
+
+      parsing: 
+        path-expression: original_title
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 19
+        hidden: false
+
+    - # ====== Column: ORIGINAL_LANGUAGE ===========================
+      id: 2483678038623569499
+      identification: 
+        column-name: ORIGINAL_LANGUAGE
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 4000
+        primary-key: false
+
+      parsing: 
+        path-expression: original_language
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 20
+        hidden: false
+
+    - # ====== Column: BELONGS_TO_COLLECTION =======================
+      id: 2483678320048569499
+      identification: 
+        column-name: BELONGS_TO_COLLECTION
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 4000
+        primary-key: false
+
+      parsing: 
+        path-expression: belongs_to_collection
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 21
+        hidden: false
+
+  operations: 
+  - # ====== Operation: GET ======================================
+    id: 2483678793604569500
+    operation: 
+      url-pattern: .
+      http-method: GET
+      database-operation: Fetch Rows
+
+    remote-cache: 
+      caching: Disabled
+
+    advanced: 
+      allow-fetching-all-rows: false
+      force-raise-http-404-error: false
+
+- # ====== REST Data Source: Company Details ===================
+  id: 2484239687709018882
+  identification: 
+    name: Company Details
+    type: HTTP
+
+  source: 
+    remote-server: api-themoviedb-org-3 # 809313303198541777
+    url-path-prefix: company/{company_id}
+
+  settings: 
+    pagination-type: NO PAGINATION
+
+  authentication: 
+    credentials: TMDb API Key # 832934514656382544
+
+  synchronization: 
+    job-is-active: false
+    local-table-owner: Parsing Schema
+
+  advanced: 
+    static-id: Company_Details
+    pass-ecid: true
+
+  parameters: 
+  - # ====== Parameter: company_id ===============================
+    id: 2484240351971018883
+    identification: 
+      name: company_id
+
+    value: 
+      type: URL Pattern variable
+      direction: In
+      static: false
+      value: 1
+      required: false
+
+    advanced: 
+      use-for-row-search: false
+
+  data-profiles: 
+    id: 2484237092709018880
+    identification: 
+      name: Company Details
+
+    data-profile: 
+      format: JSON
+      contains-single-row: false
+
+    advanced: 
+      encoding: Database Character Set
+
+    columns: 
+    - # ====== Column: ID ==========================================
+      id: 2484237346011018881
+      identification: 
+        column-name: ID
+
+      source: 
+        type: Data
+        data-type: NUMBER
+        primary-key: false
+
+      parsing: 
+        path-expression: id
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 1
+        hidden: false
+
+    - # ====== Column: NAME ========================================
+      id: 2484237636835018881
+      identification: 
+        column-name: NAME
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 4000
+        primary-key: false
+
+      parsing: 
+        path-expression: name
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 2
+        hidden: false
+
+    - # ====== Column: HOMEPAGE ====================================
+      id: 2484237896814018881
+      identification: 
+        column-name: HOMEPAGE
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 4000
+        primary-key: false
+
+      parsing: 
+        path-expression: homepage
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 3
+        hidden: false
+
+    - # ====== Column: LOGO_PATH ===================================
+      id: 2484238280428018881
+      identification: 
+        column-name: LOGO_PATH
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 4000
+        primary-key: false
+
+      parsing: 
+        path-expression: logo_path
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 4
+        hidden: false
+
+    - # ====== Column: DESCRIPTION =================================
+      id: 2484238554982018881
+      identification: 
+        column-name: DESCRIPTION
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 4000
+        primary-key: false
+
+      parsing: 
+        path-expression: description
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 5
+        hidden: false
+
+    - # ====== Column: HEADQUARTERS ================================
+      id: 2484238815496018882
+      identification: 
+        column-name: HEADQUARTERS
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 4000
+        primary-key: false
+
+      parsing: 
+        path-expression: headquarters
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 6
+        hidden: false
+
+    - # ====== Column: ORIGIN_COUNTRY ==============================
+      id: 2484239119445018882
+      identification: 
+        column-name: ORIGIN_COUNTRY
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 4000
+        primary-key: false
+
+      parsing: 
+        path-expression: origin_country
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 7
+        hidden: false
+
+    - # ====== Column: PARENT_COMPANY ==============================
+      id: 2484239403968018882
+      identification: 
+        column-name: PARENT_COMPANY
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 4000
+        primary-key: false
+
+      parsing: 
+        path-expression: parent_company
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 8
+        hidden: false
+
+  operations: 
+  - # ====== Operation: GET ======================================
+    id: 2484239926674018882
+    operation: 
+      url-pattern: .
+      http-method: GET
+      database-operation: Fetch Rows
+
+    remote-cache: 
+      caching: Disabled
+
+    advanced: 
+      allow-fetching-all-rows: false
+      force-raise-http-404-error: false
+
+- # ====== REST Data Source: Search Movie ======================
+  id: 3292421760424576665
+  identification: 
+    name: Search Movie
+    type: HTTP
+
+  source: 
+    remote-server: api-themoviedb-org-3 # 809313303198541777
+    url-path-prefix: /search/movie
+
+  settings: 
+    pagination-type: Page Number
+    page-number-url-parameter: page
+    index-of-first-page: 1
+    fixed-page-size: 20
+
+  authentication: 
+    credentials: TMDb API Key # 832934514656382544
+
+  synchronization: 
+    job-is-active: false
+    local-table-owner: Parsing Schema
+
+  advanced: 
+    static-id: MovieDB
+    pass-ecid: true
+
+  parameters: 
+  - # ====== Parameter: query ====================================
+    id: 3292422430224576669
+    identification: 
+      name: query
+
+    value: 
+      type: Query String variable
+      direction: In
+      static: false
+      value: Jack+Reacher
+      required: false
+
+    advanced: 
+      use-for-row-search: true
+      omit-when-value-is-empty: false
+
+  data-profiles: 
+    id: 3292417733431576657
+    identification: 
+      name: MovieDB
+
+    data-profile: 
+      format: JSON
+      row-selector: results
+      contains-single-row: false
+
+    advanced: 
+      encoding: Database Character Set
+
+    columns: 
+    - # ====== Column: ID ==========================================
+      id: 3292417923062576660
+      identification: 
+        column-name: ID
+
+      source: 
+        type: Data
+        data-type: NUMBER
+        primary-key: false
+
+      parsing: 
+        path-expression: id
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 1
+        hidden: false
+
+    - # ====== Column: ADULT =======================================
+      id: 3292418208899576661
+      identification: 
+        column-name: ADULT
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 4000
+        primary-key: false
+
+      parsing: 
+        path-expression: adult
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 2
+        hidden: false
+
+    - # ====== Column: TITLE =======================================
+      id: 3292418544576576661
+      identification: 
+        column-name: TITLE
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 4000
+        primary-key: false
+
+      parsing: 
+        path-expression: title
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 3
+        hidden: false
+
+    - # ====== Column: VIDEO =======================================
+      id: 3292418813809576661
+      identification: 
+        column-name: VIDEO
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 4000
+        primary-key: false
+
+      parsing: 
+        path-expression: video
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 4
+        hidden: false
+
+    - # ====== Column: OVERVIEW ====================================
+      id: 3292419103419576661
+      identification: 
+        column-name: OVERVIEW
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 4000
+        primary-key: false
+
+      parsing: 
+        path-expression: overview
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 5
+        hidden: false
+
+    - # ====== Column: POPULARITY ==================================
+      id: 3292419373341576661
+      identification: 
+        column-name: POPULARITY
+
+      source: 
+        type: Data
+        data-type: NUMBER
+        primary-key: false
+
+      parsing: 
+        path-expression: popularity
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 6
+        hidden: false
+
+    - # ====== Column: VOTE_COUNT ==================================
+      id: 3292419668214576662
+      identification: 
+        column-name: VOTE_COUNT
+
+      source: 
+        type: Data
+        data-type: NUMBER
+        primary-key: false
+
+      parsing: 
+        path-expression: vote_count
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 7
+        hidden: false
+
+    - # ====== Column: POSTER_PATH =================================
+      id: 3292420011002576662
+      identification: 
+        column-name: POSTER_PATH
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 4000
+        primary-key: false
+
+      parsing: 
+        path-expression: poster_path
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 8
+        hidden: false
+
+    - # ====== Column: RELEASE_DATE ================================
+      id: 3292420313002576662
+      identification: 
+        column-name: RELEASE_DATE
+
+      source: 
+        type: Data
+        data-type: DATE
+        primary-key: false
+
+      parsing: 
+        path-expression: release_date
+        format-mask: YYYY"-"MM"-"DD
+        has-time-zone: false
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 9
+        hidden: false
+
+    - # ====== Column: VOTE_AVERAGE ================================
+      id: 3292420619692576662
+      identification: 
+        column-name: VOTE_AVERAGE
+
+      source: 
+        type: Data
+        data-type: NUMBER
+        primary-key: false
+
+      parsing: 
+        path-expression: vote_average
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 10
+        hidden: false
+
+    - # ====== Column: BACKDROP_PATH ===============================
+      id: 3292420932310576662
+      identification: 
+        column-name: BACKDROP_PATH
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 4000
+        primary-key: false
+
+      parsing: 
+        path-expression: backdrop_path
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 11
+        hidden: false
+
+    - # ====== Column: ORIGINAL_TITLE ==============================
+      id: 3292421226449576663
+      identification: 
+        column-name: ORIGINAL_TITLE
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 4000
+        primary-key: false
+
+      parsing: 
+        path-expression: original_title
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 12
+        hidden: false
+
+    - # ====== Column: ORIGINAL_LANGUAGE ===========================
+      id: 3292421528589576663
+      identification: 
+        column-name: ORIGINAL_LANGUAGE
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 4000
+        primary-key: false
+
+      parsing: 
+        path-expression: original_language
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 13
+        hidden: false
+
+  operations: 
+  - # ====== Operation: GET ======================================
+    id: 3292421977297576667
+    operation: 
+      url-pattern: .
+      http-method: GET
+      database-operation: Fetch Rows
+
+    remote-cache: 
+      caching: Disabled
+
+    advanced: 
+      fixed-page-size: 20
+      allow-fetching-all-rows: false
+      force-raise-http-404-error: false
+
+- # ====== REST Data Source: Search Company ====================
+  id: 3292432876264625593
+  identification: 
+    name: Search Company
+    type: HTTP
+
+  source: 
+    remote-server: api-themoviedb-org-3 # 809313303198541777
+    url-path-prefix: search/company
+
+  settings: 
+    pagination-type: Page Number
+    page-number-url-parameter: page
+    index-of-first-page: 1
+    fixed-page-size: 20
+
+  authentication: 
+    credentials: TMDb API Key # 832934514656382544
+
+  synchronization: 
+    job-is-active: false
+    local-table-owner: Parsing Schema
+
+  advanced: 
+    static-id: Search_Company
+    pass-ecid: true
+
+  parameters: 
+  - # ====== Parameter: query ====================================
+    id: 3292433459018625594
+    identification: 
+      name: query
+
+    value: 
+      type: Query String variable
+      direction: In
+      static: false
+      value: Netflix
+      required: false
+
+    advanced: 
+      use-for-row-search: true
+      omit-when-value-is-empty: false
+
+  data-profiles: 
+    id: 3292431531062625592
+    identification: 
+      name: Search Company
+
+    data-profile: 
+      format: JSON
+      row-selector: results
+      contains-single-row: false
+
+    advanced: 
+      encoding: Database Character Set
+
+    columns: 
+    - # ====== Column: ID ==========================================
+      id: 3292431710118625592
+      identification: 
+        column-name: ID
+
+      source: 
+        type: Data
+        data-type: NUMBER
+        primary-key: false
+
+      parsing: 
+        path-expression: id
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 1
+        hidden: false
+
+    - # ====== Column: NAME ========================================
+      id: 3292432012915625592
+      identification: 
+        column-name: NAME
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 4000
+        primary-key: false
+
+      parsing: 
+        path-expression: name
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 2
+        hidden: false
+
+    - # ====== Column: LOGO_PATH ===================================
+      id: 3292432335164625593
+      identification: 
+        column-name: LOGO_PATH
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 4000
+        primary-key: false
+
+      parsing: 
+        path-expression: logo_path
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 3
+        hidden: false
+
+    - # ====== Column: ORIGIN_COUNTRY ==============================
+      id: 3292432578928625593
+      identification: 
+        column-name: ORIGIN_COUNTRY
+
+      source: 
+        type: Data
+        data-type: VARCHAR2
+        maximum-length: 4000
+        primary-key: false
+
+      parsing: 
+        path-expression: origin_country
+
+      remote-rest-data-source-server: 
+        filterable: true
+
+      advanced: 
+        sequence: 4
+        hidden: false
+
+  operations: 
+  - # ====== Operation: GET ======================================
+    id: 3292433114821625593
+    operation: 
+      url-pattern: .
+      http-method: GET
+      database-operation: Fetch Rows
+
+    remote-cache: 
+      caching: Disabled
+
+    advanced: 
+      fixed-page-size: 20
+      allow-fetching-all-rows: false
+      force-raise-http-404-error: false
+
