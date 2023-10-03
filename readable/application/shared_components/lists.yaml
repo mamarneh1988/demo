@@ -204,6 +204,33 @@
     user-defined-attributes: 
       translatable: false
 
+  - # ====== Entry: demo =========================================
+    id: 845917286337277292
+    label: 
+      label: demo
+
+    icon: 
+      image/icon-css-classes: fa-file-o
+
+    layout: 
+      sequence: 300
+
+    is-current: 
+      type: Pages
+      pages: 
+      - 4
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:4:&APP_SESSION.::&DEBUG.:::'
+        page: 4 # demo
+
+    click-counting: 
+      count-clicks: false
+
+    user-defined-attributes: 
+      translatable: false
+
   - # ====== Entry: Administration ===============================
     id: 835452617171726715
     label: 

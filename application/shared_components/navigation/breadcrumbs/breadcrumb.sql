@@ -28,6 +28,12 @@ wwv_flow_imp_shared.create_menu_option(
 ,p_page_id=>3
 );
 wwv_flow_imp_shared.create_menu_option(
+ p_id=>wwv_flow_imp.id(845916376861277281)
+,p_short_name=>'demo'
+,p_link=>'f?p=&APP_ID.:4:&APP_SESSION.::&DEBUG.:::'
+,p_page_id=>4
+);
+wwv_flow_imp_shared.create_menu_option(
  p_id=>wwv_flow_imp.id(835454057734726726)
 ,p_short_name=>'Administration'
 ,p_link=>'f?p=&APP_ID.:500:&APP_SESSION.::&DEBUG.:::'

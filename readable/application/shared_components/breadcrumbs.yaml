@@ -33,6 +33,20 @@
         url: 'f?p=&APP_ID.:3:&APP_SESSION.::&DEBUG.:::'
         page: 3 # test
 
+  - # ====== Entry: demo =========================================
+    id: 845916376861277281
+    identification: 
+      name: demo
+      page-number: 4
+
+    execution: 
+      sequence: 10
+
+    link: 
+      target: 
+        url: 'f?p=&APP_ID.:4:&APP_SESSION.::&DEBUG.:::'
+        page: 4 # demo
+
   - # ====== Entry: Administration ===============================
     id: 835454057734726726
     identification: 
